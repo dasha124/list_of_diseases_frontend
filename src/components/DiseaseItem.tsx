@@ -1,11 +1,8 @@
-import Dispatch from "react";
-import React from 'react'
 import { FC, useState, useEffect} from 'react'
 import { Button, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Buffer } from 'buffer';
 import "/home/student/reactProject/list_of_diseases/src/components/ds.css"
-import BreadCrumbs from "./BreadСrumbs";
 
 
 interface Disease {
