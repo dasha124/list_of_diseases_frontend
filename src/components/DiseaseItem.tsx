@@ -9,7 +9,7 @@ import BreadCrumbs from "./BreadСrumbs";
 
 
 interface Disease {
-    image64: string,
+    // image64: string,
     disease_name: string,
     disease_id: number
 }
@@ -17,8 +17,8 @@ interface Disease {
 
 
 
-const DiseaseItem: FC<Disease> = ({ image64, disease_name, disease_id}) => {
-    
+// const DiseaseItem: FC<Disease> = ({ image64, disease_name, disease_id}) => {
+const DiseaseItem: FC<Disease> = ({ disease_name, disease_id}) => {
     
     const [image, setImage64] = useState('');
 
@@ -94,7 +94,8 @@ const DiseaseItem: FC<Disease> = ({ image64, disease_name, disease_id}) => {
         <Card className='card'>
         
         {/* <img src={image64} alt={disease_name} className="custom-card-img" /> */}
-        {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + image} height={100} width={100} />}
+        
+        {/* {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + image} height={100} width={100} />} */}
         <Card.Body>
             <div>
                 <Card.Text> { disease_name }</Card.Text>
