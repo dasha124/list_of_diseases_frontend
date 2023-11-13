@@ -3,10 +3,11 @@ export interface DiseaseDetail{
     disease_name: string
     sphere_name: string
     disease_id: number
+    simptoms: string
 }
 
 export const getDiseaseDetail = async (id: number): Promise<DiseaseDetail> =>{
-    return fetch('http://localhost:8000/diseases/?${id}', {
+    return fetch('/api/diseases/'+id+'/', {
         method: 'GET',
         }) 
         .then((response) => response.json())
