@@ -17,6 +17,6 @@ export default defineConfig({
 
     }
   },
-  base: "list_of_diseases_frontend",
+  base: "diseases",
   plugins: [react()],
 })

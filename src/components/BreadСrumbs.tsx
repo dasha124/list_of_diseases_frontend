@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import '/home/student/reactProject/list_of_diseases/src/styles/bc.css'
+import '/home/student/frontend/list_of_diseases_frontend/src/components/ds.css'
 
 
 function BreadCrumbs(){

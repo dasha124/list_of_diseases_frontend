@@ -1,5 +1,5 @@
 import { FC, useState, useEffect} from 'react'
-import "/home/student/reactProject/list_of_diseases/src/components/ds.css"
+import "/home/student/frontend/list_of_diseases_frontend/src/components/ds.css"
 import {useParams} from "react-router-dom";
 import { DiseaseDetail, getDiseaseDetail} from "./modules/get-disease-detail";
 import BreadCrumbs from "./components/BreadСrumbs";

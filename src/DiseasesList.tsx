@@ -1,11 +1,12 @@
 import { FC, useState, useEffect} from 'react';
-import InputField from "./components/last/InputField";
+import InputField from './components/InputField';
 import { Col, Row, Spinner, Container } from 'react-bootstrap'
 import DiseaseItem from "./components/DiseaseItem";
 import { Disease, getDisease } from "./modules/get-disease";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MyNavbar from "./MyNavbar";
-import BreadCrumbs from "./components/BreadСrumbs";
+import BreadCrumbs from './components/BreadСrumbs';
+import { DiseaseMock } from './Consts';
 
 
 
