@@ -6,7 +6,7 @@ import { Disease, getDisease } from "./modules/get-disease";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MyNavbar from "./MyNavbar";
 import BreadCrumbs from './components/BreadСrumbs';
-import { DiseaseMock } from './Consts';
+
 
 
 

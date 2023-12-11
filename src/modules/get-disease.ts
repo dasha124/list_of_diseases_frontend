@@ -11,13 +11,6 @@ export interface DiseasesResult {
 }
 
 
-const DiseaseMock = {
-    
-    disease_name: "болячка_1",
-    disease_id: 1,
-    image: "",
-}
-
 const DiseasesMock: Disease[] = [
     {
         disease_name: "болячка_1",

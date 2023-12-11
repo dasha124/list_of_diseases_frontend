@@ -16,7 +16,7 @@
 .card {
     margin: 5px; 
     border: 3px solid #1dd3a2;
-    height: 200px;
+    height: 250px;
     width: 150px;
     /*height: 50px;*/   
 }
@@ -93,13 +93,12 @@
 }
 
 .btn {
-    display: inline;
     bottom: 5px;
     font-size: 14px;
     background-color: #1dd3a2;
     border-radius: 4px;
-    width: 200px;
-    margin-left: 4px;
+    width: 115px;
+
     margin-top: 3px;
 }
 

@@ -31,8 +31,8 @@ const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
                 <Card.Text> { disease_name }</Card.Text>
             </div>
             
-            <Button className="l1" href={"http://localhost:3000/diseases/"+disease_id}>Подробнее</Button>
-            <Button className="l1" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button>
+            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Подробнее</Button>
+            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button>
 
         </Card.Body>
         </Card>
