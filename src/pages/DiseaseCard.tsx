@@ -1,8 +1,8 @@
 import { FC, useState, useEffect} from 'react'
-import "/home/student/frontend/list_of_diseases_frontend/src/components/ds.css"
+import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {useParams} from "react-router-dom";
-import { DiseaseDetail, getDiseaseDetail} from "./modules/get-disease-detail";
-import BreadCrumbs from "./components/BreadСrumbs";
+import { DiseaseDetail, getDiseaseDetail} from "../modules/get-disease-detail";
+import BreadCrumbs from "../components/BreadСrumbs";
 import { Card } from 'react-bootstrap';
 
 

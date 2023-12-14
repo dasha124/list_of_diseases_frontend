@@ -3,7 +3,7 @@ import {FC} from 'react'
 import { Button, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Buffer } from 'buffer';
-import '/home/student/frontend/list_of_diseases_frontend/src/components/ds.css'
+import '/home/student/front/list_of_diseases_frontend/src/components/ds.css'
 
 
 interface Disease {

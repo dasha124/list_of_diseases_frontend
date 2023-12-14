@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import DiseaseCard from './DiseaseCard.tsx'
-import DiseasesList from './DiseasesList.tsx'
+import DiseaseCard from './pages/DiseaseCard.tsx'
+import DiseasesList from './pages/DiseasesList.tsx'
 
 const router = createBrowserRouter([
 
