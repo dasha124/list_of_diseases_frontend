@@ -137,3 +137,35 @@
     padding: 0 15px;
 
 }
+
+.sign-up-link-container{
+    width: 295px;
+    display: flex;
+    justify-content: center;
+
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.sign-up-text{
+    display: flex;
+    margin-top: 10px;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.input{
+    margin-top: 10px;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    gap: 25px;
+    margin-left: 10px;
+
+}
+   

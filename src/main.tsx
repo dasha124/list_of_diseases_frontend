@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DiseaseCard from './pages/DiseaseCard.tsx'
 import DiseasesList from './pages/DiseasesList.tsx'
+import SignInPage from './pages/SignIn.tsx'
+import SignUpPage from './pages/SignUp.tsx'
 
 const router = createBrowserRouter([
 
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
   {
     path: '/diseases/:id/',
     element: <DiseaseCard/>,
+  },
+  {
+    path: '/login/',
+    element: <SignInPage/>,
+  },
+  {
+    path: '/signUp/',
+    element: <SignUpPage/>,
   },
 
 ]);

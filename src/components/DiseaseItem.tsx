@@ -9,14 +9,15 @@ import '/home/student/front/list_of_diseases_frontend/src/components/ds.css'
 interface Disease {
     image: string,
     disease_name: string,
-    disease_id: number
+    id: number,
+    simptoms: string,
 }
 
 
 
 
 // const DiseaseItem: FC<Disease> = ({ image64, disease_name, disease_id}) => {
-const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
+const DiseaseItem: FC<Disease> = ({ disease_name, id, image}) => {
     
 
     return (
@@ -31,8 +32,8 @@ const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
                 <Card.Text> { disease_name }</Card.Text>
             </div>
             
-            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Подробнее</Button>
-            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button>
+            <Button className="btn" href={"http://localhost:3000/diseases/"+id}>Подробнее</Button>
+            <Button className="btn" href={"http://localhost:3000/diseases/"+id}>Удалить</Button>
 
         </Card.Body>
         </Card>

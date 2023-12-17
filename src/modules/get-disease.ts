@@ -2,7 +2,8 @@
 export interface Disease{
     image: string
     disease_name: string
-    disease_id: number
+    id: number,
+    simptoms: string,
 }
 
 export interface DiseasesResult {
@@ -14,18 +15,22 @@ export interface DiseasesResult {
 const DiseasesMock: Disease[] = [
     {
         disease_name: "болячка_1",
-        disease_id: 1,
+        id: 1,
         image: "",
+        simptoms: "",
     },
+
     {
         disease_name: "болячка_2",
-        disease_id: 2,
+        id: 2,
         image: "",
+        simptoms: "",
     },
     {
         disease_name: "болячка_3",
-        disease_id: 3,
+        id: 3,
         image: "",
+        simptoms: "",
     }
 
 ]

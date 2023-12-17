@@ -1,13 +1,15 @@
 export interface DiseaseDetail{
     image: string
     disease_name: string
-    disease_id: number
+    id: number
     simptoms: string
 }
+
+
 const DiseaseMock: DiseaseDetail = {
     
     disease_name: "болячка_1",
-    disease_id: 1,
+    id: 1,
     image: "",
     simptoms: "симптом_1,симптом_2"
 }
