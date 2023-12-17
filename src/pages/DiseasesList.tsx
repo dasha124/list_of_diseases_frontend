@@ -1,6 +1,6 @@
 import { FC, useState, useEffect} from 'react';
 import InputField from '../components/InputField';
-import { Col, Row, Spinner, Container } from 'react-bootstrap'
+import { Col, Row, Spinner, Container, Modal, Button } from 'react-bootstrap'
 import DiseaseItem from "../components/DiseaseItem";
 import { Disease, getDisease } from "../modules/get-disease";
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -29,8 +29,8 @@ const DiseasesList: FC = () => {
 
     return (
         <div>
-            <MyNavbar/>
             <BreadCrumbs />
+            <MyNavbar/>
             <Container>
             <div className={`container ${loading && 'containerLoading'}`}>
                 {loading && <div className="loadingBg"><Spinner animation="border"/></div>}
@@ -45,6 +45,18 @@ const DiseasesList: FC = () => {
                 {!disease.length && <div>
                     <h1>К сожалению, пока ничего не найдено :(</h1>
                 </div>}
+
+
+                {/* <Modal show = {booked} onHide={handleModalClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Регион добавлен в корзину</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Footer>
+                        <Button variant="success" onClick={() => {}}>
+                        Ок
+                        </Button>
+                    </Modal.Footer>
+                </Modal> */}
 
                 <Row xs={4} md={4} className="g-4">
                     {disease.map((item, index)=> (

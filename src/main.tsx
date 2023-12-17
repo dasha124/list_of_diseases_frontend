@@ -6,6 +6,8 @@ import DiseaseCard from './pages/DiseaseCard.tsx'
 import DiseasesList from './pages/DiseasesList.tsx'
 import SignInPage from './pages/SignIn.tsx'
 import SignUpPage from './pages/SignUp.tsx'
+import AccountPage from './pages/AccountPage.tsx'
+
 
 const router = createBrowserRouter([
 
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/signUp/',
     element: <SignUpPage/>,
+  },
+  {
+    path: '/acc/',
+    element: <AccountPage/>,
   },
 
 ]);

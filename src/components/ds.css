@@ -55,6 +55,15 @@
     border-radius: 5px;
 }
 
+.card_serv2 {
+    margin-top: 15px;
+    margin-left: 5px; 
+    border: 3px solid #1dd3a2;
+    height: 500px;
+    width: 400px;
+    border-radius: 5px;
+}
+
 
 .aspect_st {
     color: rgb(9, 8, 8);
@@ -63,18 +72,18 @@
 }
 
 .butt_serv {
-        position: relative;
-        bottom: 5px;
-        font-size: 13px;
-        background-color: #1dd3a2;
-        border-radius: 4px;
-        width: 77px;
-       
-        margin-left: 5px;
-       
-        border: 0;
-        float: left;
-        text-align: center;
+    position: relative;
+    bottom: 5px;
+    font-size: 13px;
+    background-color: #1dd3a2;
+    border-radius: 4px;
+    width: 77px;
+    
+    margin-left: 5px;
+    
+    border: 0;
+    float: left;
+    text-align: center;
 }
 
 .butt_serv_2 {
@@ -115,6 +124,14 @@
     margin-bottom: 2px;
     object-fit: cover;
 }
+
+.img-card2 {
+    width: 250px;
+    height: 250px;
+    margin-left: 17%;
+}
+
+
 
 .l1 button{
 

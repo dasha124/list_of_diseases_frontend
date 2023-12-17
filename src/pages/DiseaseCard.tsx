@@ -35,7 +35,8 @@ const DiseaseCard: FC = () => {
     return (
         <div>
             <BreadCrumbs />
-            <Card className="card_serv">
+            <Card className="card_serv2">
+            {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />}
             <div>
                 
                 <p className="service-text"> { details?.disease_name }</p>
