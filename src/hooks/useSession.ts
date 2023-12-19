@@ -1,21 +1,21 @@
 import Cookies from "universal-cookie";
 
-export function SsId() {
+export function useSession() {
     const cookies = new Cookies()
 
     const session_id = cookies.get("session_id");
 
-    const setSsId = (value: any) => {
+    const setSession = (value: any) => {
         cookies.set("session_id", value,)
     }
 
-    const resetSsId = () => {
+    const resetSession = () => {
         cookies.set("session_id", undefined)
     }
 
     return {
         session_id,
-        setSsId,
-        resetSsId,
+        setSession,
+        resetSession,
     };
 }

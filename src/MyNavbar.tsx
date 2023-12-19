@@ -1,4 +1,4 @@
-import Container from 'react-bootstrap/Container';
+import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -21,7 +21,7 @@ function MyNavbar() {
                  
             <Nav className="ms-auto">
               <NavDropdown title="Профиль" id="basic-nav-dropdown">
-                <NavDropdown.Item> <Link to="">Корзина</Link></NavDropdown.Item>
+                <NavDropdown.Item> <Link to="">Личный кабинет</Link></NavDropdown.Item>
                 <NavDropdown.Item> <Link to="">Выйти</Link></NavDropdown.Item>
              </NavDropdown>
             </Nav>

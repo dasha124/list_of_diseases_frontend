@@ -2,7 +2,7 @@ export const DOMEN = "http://127.0.0.1:8000/"
 
 export const requestTime = 1000
 
-export const DiseaseMock = {
+export const iDiseaseMock = {
     
         disease_name: "болячка_1",
         disease_id: 1,
@@ -10,7 +10,7 @@ export const DiseaseMock = {
         save: []
 }
 
-export const DiseasesMock = [
+export const iDiseasesMock = [
     {
         disease_name: "болячка_1",
         disease_id: 1,
@@ -29,9 +29,17 @@ export const DiseasesMock = [
         image: "",
         save: []
     }
-
-
-
-
 ]
-    
+
+interface Option {
+    id: string;
+    name: string;
+}
+
+
+export const STATUSES : Option[] = [
+    {
+        id: "e",
+        name: "Черновик"
+    },
+]

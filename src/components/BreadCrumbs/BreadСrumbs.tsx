@@ -1,5 +1,5 @@
+//import '/home/student/front/list_of_diseases_frontend/src/components/ds.css'
 import { Link, useLocation } from "react-router-dom";
-import '/home/student/front/list_of_diseases_frontend/src/components/ds.css'
 
 
 function BreadCrumbs(){
@@ -10,7 +10,7 @@ function BreadCrumbs(){
     const crumbs = location.pathname.split('/')
     .filter(crumb => crumb !== '')
     .map(crumb => {
-        currentLink += `/${crumb}`
+        currentLink += '/${crumb}'
 
         return(
             <div className="crumb" key={crumb}>
