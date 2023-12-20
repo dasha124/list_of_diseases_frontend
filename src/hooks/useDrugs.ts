@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {pageChanged, pageSizeChanged, totalCountChanged} from "../store/drugsSlice";
+import React from "react";
 
 export function useDrugs() {
     const queryPageIndex = useSelector((state: any) => state.drugs.queryPageIndex);

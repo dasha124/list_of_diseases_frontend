@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
 import Header from "../src/components/Header/Header";
-import Breadcrumbs from "/home/student/front/list_of_diseases_frontend/src/components/BreadCrumbs/BreadСrumbs.tsx";
+import BreadCrumbs from "/home/student/front/list_of_diseases_frontend/src/components/BreadCrumbs/BreadСrumbs.tsx";
 import DiseasePage from "./pages/DiseasePage/DiseasePage";
 import SignIn from "./pages/LoginPage/SignIn/SignIn";
 import SignUp from "./pages/LoginPage/SignUp/SignUp";
@@ -17,6 +17,7 @@ import {QueryClient, QueryClientProvider } from "react-query";
 import {Disease, Drug} from "./Types";
 import {useState} from "react";
 import DrugPage from "./pages/DrugPage/DrugPage";
+import React from "react";
 
 const LoginFormLayout = () => {
   return (
@@ -75,9 +76,10 @@ function App() {
 
                       <Route path="login/" element={<SignIn />} />
 
-                      <Route path="register/" element={<SignUp />} />
+                      {/* <Route path="/register/" element={<SignUp />} /> */}
 
                     </Route>
+                    <Route path="/register/" element={<SignUp />} />
 
                     <Route path="/drugs" element={<DrugsPage />} />
 

@@ -23,7 +23,8 @@ const DiseaseListPage = () => {
 
         try {
 
-            const response: Response<any> = await axios(`http://127.0.0.1:8000/diseases/search?query=${query}`, {
+            const response: Response<any> = await axios(`http://localhost:8000/api/diseases/?disease_name=${query}`, {
+            
                 method: "GET",
                 signal: AbortSignal.timeout(requestTime),
                 headers: {
@@ -50,6 +51,7 @@ const DiseaseListPage = () => {
 
     return (
         <DiseasesContext.Provider value={{diseases, setDiseases}}>
+            
             <div className="diseases-wrapper">
 
                 <div className="filters-container">
@@ -71,8 +73,9 @@ const DiseaseListPage = () => {
 
 
                 </div>
+                { <SearchResultsList /> }
 
-                <div className="bottom">
+                {/* <div className="bottom">
                     <div className="disease-list-wrapper">
 
                         <div className="top-wrapper">
@@ -90,7 +93,7 @@ const DiseaseListPage = () => {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
             </div>
         </DiseasesContext.Provider>

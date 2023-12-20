@@ -1,3 +1,5 @@
+
+import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {Dispatch} from "react";
 import {Link} from "react-router-dom";
 import {Disease} from "../../../Types";
@@ -11,6 +13,7 @@ import {useAuth} from "../../../hooks/useAuth";
 import {useSession} from "../../../hooks/useSession";
 import {useDraftDrug} from "../../../hooks/useDraftDrug";
 import { AxiosResponse } from 'axios';
+import { Card, Button } from "react-bootstrap";
 
 const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: Dispatch<Disease[]> }) => {
 
@@ -114,6 +117,7 @@ const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: 
                 <button className="disease-delete-button" onClick={onDelete}>Удалить</button>
 
             </div>
+
 
         </motion.div>
 

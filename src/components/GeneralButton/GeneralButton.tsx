@@ -1,4 +1,6 @@
 //import "./GeneralButton.css";
+import React from "react";
+
 
 interface GeneralButtonProps {
     text: string;

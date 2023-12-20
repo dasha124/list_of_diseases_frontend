@@ -1,7 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {
-    updateDrug
-} from "../store/draftDrugSlice";
+import {updateDrug} from "../store/draftDrugSlice";
 import axios from "axios";
 import {useSession} from "./useSession";
 import {Drug} from "../Types";

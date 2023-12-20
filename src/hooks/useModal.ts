@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState} from "react";
+import React from "react";
 
 export function useModal() {
     const modalRef = useRef<HTMLDivElement | null>(null);

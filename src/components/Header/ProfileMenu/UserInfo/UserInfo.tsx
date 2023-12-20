@@ -1,4 +1,5 @@
 //import "./UserInfo.css"
+import React from "react";
 import {useAuth} from "../../../../hooks/useAuth";
 // import {ImExit} from "react-icons/im";
 // @ts-ignore

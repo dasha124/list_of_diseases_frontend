@@ -1,3 +1,4 @@
+
 export interface DiseaseDetail{
     image: string
     disease_name: string

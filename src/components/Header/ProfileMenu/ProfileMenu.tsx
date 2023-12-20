@@ -2,6 +2,7 @@
 // import { FaChevronRight, FaQuestionCircle } from "react-icons/fa";
 // import { BiLogOut } from "react-icons/bi";
 // import { CgProfile } from "react-icons/cg";
+import React from "react";
 import {useDraftDrug} from "../../../hooks/useDraftDrug";
 import {useEffect, useState} from "react";
 import Hamburger from "../Hamburger/Hamburger";

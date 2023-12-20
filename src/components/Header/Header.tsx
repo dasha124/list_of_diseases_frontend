@@ -1,4 +1,4 @@
-//import "./Header.css";
+import "./Header.css";
 import * as React from 'react';
 import ProfileMenu from "./ProfileMenu/ProfileMenu";
 //import logo from "../../../bank-logo.png"
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                 <div className="header-left">
                     {/*<img src={logo} className="logo" alt="Bank Logo"/>*/}
                     <div>
-                        <h1 className="header-title">INK Bank</h1>
+                        <h1 className="header-title">Регистрация новых репаратов (авторизован)</h1>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
             <div className="header-left">
                 {/*<img src={logo} className="logo" alt="Bank Logo"/>*/}
                 <div>
-                    <h1 className="header-title">INK Bank</h1>
+                    <h1 className="header-title">Регистрация новых репаратов (неавторизован)</h1>
                 </div>
             </div>
 
