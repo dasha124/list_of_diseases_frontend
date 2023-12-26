@@ -1,0 +1,146 @@
+.drug-info-background {
+    background: white;
+    /* padding: 20px; */
+}
+
+.drug-info-wrapper {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.drug-info-details {
+    background: #187053;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    /* width: 550px */
+}
+
+.header-name {
+    color: #ffffff;
+}
+
+
+.header-text {
+    font-size: 25px;
+}
+
+
+.drug-info-additional table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.drug-info-additional th,
+.drug-info-additional td {
+    padding: 10px;
+    text-align: center;
+
+}
+
+.drug-info-additional th {
+    background: #a52828;
+    color: #dddddd;
+}
+
+.drug-info-additional td {
+    background: #2e2e2e;
+    color: #dddddd;
+}
+
+.drug-info-additional tbody tr:hover {
+    background-color: #a81b1b;
+
+}
+
+.buttons-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.drug-back-button {
+    /* background: #c91f1f; */
+    /* #e4f0ed */
+    color: #e4f0ed;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #1dd3a2;
+    margin-left: 20px;
+}
+
+
+.drug-back-button_ok {
+    /* background: #c91f1f; */
+    /* #e4f0ed */
+    color: #e4f0ed;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #2be262;
+    margin-left: 20px;
+}
+
+
+.drug-back-button_ne_ok {
+    /* background: #c91f1f; */
+    /* #e4f0ed */
+    color: #e4f0ed;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #e22b2b;
+    margin-left: 20px;
+}
+
+
+.drug-back-button:hover {
+    background: #17ac84;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.accept-button {
+    background: #b63131;
+    color: #a82e2e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #9ACD32;
+}
+
+.accept-button:hover {
+    background: #8c7016;
+}
+
+.dismiss-button {
+    background: #2e2e2e;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color: #B22222;
+}
+
+.dismiss-button:hover {
+    background: #15165d;
+}

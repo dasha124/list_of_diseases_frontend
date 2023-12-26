@@ -1,4 +1,4 @@
-//import "./UserInfo.css"
+import "./UserInfo.css"
 import React from "react";
 import {useAuth} from "../../../../hooks/useAuth";
 // import {ImExit} from "react-icons/im";
@@ -14,7 +14,7 @@ const UserInfo = () => {
 
     const navigate = useNavigate()
 
-    const {is_superuser, user_name, user_email, logOut} = useAuth()
+    const {is_superuser, user_name, user_email, logOut, user_id} = useAuth()
 
     const {resetSession} = useSession()
 
@@ -33,7 +33,7 @@ const UserInfo = () => {
         logOut()
         resetSession()
         logOutMessage()
-        navigate("/home")
+        navigate("/diseases")
     }
 
     return (
@@ -43,8 +43,8 @@ const UserInfo = () => {
             </div>
 
             <div className={"user-info-wrapper " + (isOpen ? "open" : "")} ref={modalRef}>
-                <span>Имя: {user_name}</span>
-                <span>Почта: {user_email}</span>
+                <span>Логин: {user_name}</span>
+                {/* <span>Почта: {user_email}</span> */}
                 <span>Статус: {is_superuser ? "Модератор" : "Пользователь"}</span>
 
                 <button onClick={doLogOut}>

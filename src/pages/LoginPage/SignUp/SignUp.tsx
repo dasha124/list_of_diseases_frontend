@@ -4,11 +4,12 @@
 import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import {errorMessage, successMessage} from "../../../Toasts/Toasts";
+import { successMessage} from "../../../Toasts/Toasts";
 import {useSession} from "../../../hooks/useSession";
 import {useAuth} from "../../../hooks/useAuth";
 import {Response} from "../../../Types";
-//import GeneralButton from "../../../Components/GeneralButton/GeneralButton";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 
 const SignUp = () => {
@@ -20,7 +21,7 @@ const SignUp = () => {
     const login = async (formData: any) => {
 
         try {
-            const response:Response<any> = await axios(`http://127.0.0.1:3000/api/login/`, {
+            const response:Response<any> = await axios(`${DOMEN}/login/`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
@@ -35,20 +36,21 @@ const SignUp = () => {
 
             const permissions = {
                 is_authenticated: true,
-                is_moderator: response.data["is_moderator"],
+                // is_superuser: response.data["is_superuser"],
+                is_moderator: response.data["is_superuser"],
                 user_id: response.data["user_id"],
-                user_name: response.data["full_name"],
+                user_name: response.data["username"],
                 user_email: response.data["email"]
             }
 
             setUser(permissions)
 
-            navigate("/accounts");
+            navigate("/diseases");
 
-            successMessage(response.data["full_name"])
+            successMessage(response.data["username"])
 
-        } catch {
-            errorMessage()
+        } catch(e) {
+            
         }
     }
 
@@ -66,14 +68,14 @@ const SignUp = () => {
             });
 
             console.log("Registration data:", formDataObject);
-            const response = await axios.post("http://127.0.0.1:8000/api/register/", formData);
+            const response = await axios.post( `${DOMEN}/register/`, formData);
 
             if (response.status === 200) {
                 await login(formData);
             }
         } catch (error) {
             console.log("Error in register function:", error);
-            errorMessage();
+            
         }
 
     }
@@ -101,7 +103,7 @@ const SignUp = () => {
 
                 <div className="input">
                     {/* <FaUser className="icon" /> */}
-                    <input type="text" placeholder="Имя" name="full_name" />
+                    <input type="text" placeholder="Логин" name="username" />
                 </div>
 
                 <div className="input">
@@ -116,7 +118,7 @@ const SignUp = () => {
 
 
                 <div className="sign-in-link-container">
-                    <Link to="/auth/login" style={{ textDecoration: 'none' }}>
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
                         <span>Уже есть аккаут?</span>
                     </Link>
                 </div>

@@ -17,7 +17,9 @@ import {QueryClient, QueryClientProvider } from "react-query";
 import {Disease, Drug} from "./Types";
 import {useState} from "react";
 import DrugPage from "./pages/DrugPage/DrugPage";
+import NotFoundPage from "./pages/NotFoundPage"
 import React from "react";
+import DiseaseCardAdd from "/home/student/front/list_of_diseases_frontend/src/pages/DiseasesList/DiseaseCardAdd/DiseaseCardAdd.tsx"
 
 const LoginFormLayout = () => {
   return (
@@ -35,6 +37,7 @@ const TopPanelWrapper = () => {
       <div className="top-panels-wrapper">
         <BreadCrumbs />
         {is_authenticated && location.pathname.includes("diseases") && <DrugConstructor /> }
+        {/* { <DrugConstructor /> } */}
       </div>
   )
 }
@@ -67,7 +70,7 @@ function App() {
 
                   <Routes>
 
-                    <Route path="/" element={<Navigate to="/home/" replace />} />
+                    {/* <Route path="/" element={<Navigate to="/home/" replace />} />
 
 
                     <Route path="/auth/" element={<LoginFormLayout />} >
@@ -76,21 +79,30 @@ function App() {
 
                       <Route path="login/" element={<SignIn />} />
 
-                      {/* <Route path="/register/" element={<SignUp />} /> */}
+                      <Route path="/register/" element={<SignUp />} />
 
-                    </Route>
+                    </Route> */}
+
                     <Route path="/register/" element={<SignUp />} />
+                    <Route path="/login/" element={<SignIn />} />
+                    {/* <Route path="/" element={< NotFoundPage/>} /> */}
 
-                    <Route path="/drugs" element={<DrugsPage />} />
-
-                    <Route path="/drugs/:id" element={<DrugPage selectedDrug={selectedDrug} setSelectedDrug={setSelectedDrug}/>} />
-
-                    <Route path="/drugs/draft" element={<DraftDrugPage />} />
+                    <Route path="/" element={<DiseaseListPage />} />
 
                     <Route path="/diseases/" element={<DiseaseListPage />} />
-
                     <Route path="/diseases/:id" element={<DiseasePage selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease} />} />
+                    {/* <Route path="/diseases/:id/edit" element={<DiseaseEditPage />} /> moderator - later*/}
 
+                    <Route path="/drugs/" element={<DrugsPage />} />
+
+                    <Route path="/drugs/:id/" element={<DrugPage selectedDrug={selectedDrug} setSelectedDrug={setSelectedDrug}/>} />
+
+                    <Route path="/drugs/create_drug/" element={<DraftDrugPage />} />
+
+                    <Route path="/disease/add/" element={<DiseaseCardAdd />} />
+
+                    
+                    
 
                   </Routes>
 

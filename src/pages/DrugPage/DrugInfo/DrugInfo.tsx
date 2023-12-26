@@ -1,19 +1,36 @@
-//import "./DrugInfo.css"
+import "./DrugInfo.css"
 import {Dispatch, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {Drug} from "../../../Types";
-import {requestTime, STATUSES} from "../../../Consts";
+import {requestTime, STATUSES, DOMEN} from "../../../Consts";
+// import {requestTime} from "../../../Consts";
 import {Link} from "react-router-dom";
+// import { useState } from "react";
+import { Disease } from "../../../Types";
+import SearchResult from "../../DiseasesList/SearchResult/SearchResults";
+import {useAuth} from "../../../hooks/useAuth";
+import {useDraftDrug} from "../../../hooks/useDraftDrug";
+
+
 const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | undefined, selectedDrug:Drug| undefined, setSelectedDrug:Dispatch<Drug | undefined> }) => {
 
-    const getStatusName = (statusId: string | undefined): string => {
-        const foundStatus = STATUSES.find((status) => status.id === statusId);
-        return foundStatus ? foundStatus.name : "Неизвестный статус";
-    };
+    // const [sphereName, setSphereName] = useState('');
+    const navigate = useNavigate()
+
+    const getStatusName = (status: number | string): string => {
+        const id = Number(status);
+        const statusOption = STATUSES.find((option) => option.id === id);
+      
+        return statusOption ? statusOption.name : '';
+      };
+    const { is_superuser} = useAuth()
+    const { ApproveDrug, DisApproveDrug} = useDraftDrug()
+      
 
     const fetchData = async () => {
 
         try {
-            const response1 = await fetch(`http://127.0.0.1:8000/drugs/${drug_id}`, {
+            const response1 = await fetch(`${DOMEN}/drugs/${drug_id}/`, {
                 method: "GET",
                 signal: AbortSignal.timeout(requestTime)
             });
@@ -22,19 +39,28 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
             }
 
             const drug: Drug = await response1.json()
-
             setSelectedDrug(drug)
 
         } catch (e) {
-
-
         }
-
     };
 
     useEffect(() => {
         fetchData()
-    }, []);
+    }, [drug_id]);
+    // }, []);
+
+
+    const setOk = async () => {
+        await ApproveDrug()
+        navigate("/drugs")
+    }
+
+    
+    const setNotOk = async () => {
+        await DisApproveDrug()
+        navigate("/drugs")
+    }
 
 
     if (!selectedDrug) {
@@ -44,6 +70,52 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
             </div>
         )
     }
+
+
+    if(is_superuser){
+        return (
+            <div className="drug-info-background">
+                <div className={"drug-info-wrapper"}>
+    
+                    <div className="drug-info-details">
+                        <div className="drug-info-details">
+                            <div className="header-name">
+                                <div className="header-text"> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
+                            </div>
+                            <div className="header-name">
+                                <div className="header-text">Статус заявки: {getStatusName(selectedDrug?.status)}</div>
+                                <div className="header-text">Цена препарата: {selectedDrug.price} руб.</div>
+                                {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
+                            </div>
+    
+                        </div>
+    
+                        <div className="container">
+                        {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
+                            <div className="item" key={index}>
+                            <SearchResult disease={disease} />
+                            </div>
+                        ))}
+                        </div>
+                        <div className="drug-info-additional">
+                            <div className="buttons-info">
+                                <div className="home-button">
+                                    <Link to={`/drugs/`}>
+                                        <button className="drug-back-button">Вернуться к заявкам</button>
+                                    </Link>
+                                    <button className="drug-back-button_ok" onClick={setOk}>Одобрить</button>
+                                    <button className="drug-back-button_ne_ok" onClick={setNotOk}>Отклонить</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        );
+                                    
+    };
+
     return (
         <div className="drug-info-background">
             <div className={"drug-info-wrapper"}>
@@ -51,31 +123,24 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                 <div className="drug-info-details">
                     <div className="drug-info-details">
                         <div className="header-name">
-                            <h3> Заявка № {selectedDrug.id}</h3>
+                            <div> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
                         </div>
                         <div className="header-name">
-                            <h3>Статус заявки: {getStatusName(selectedDrug?.status)}</h3>
+                            <div>Статус заявки: {getStatusName(selectedDrug?.status)}</div>
+                            <div>Цена препарата: {selectedDrug.price}</div>
+                            {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
                         </div>
 
                     </div>
+
+                    <div className="container">
+                    {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
+                        <div className="item" key={index}>
+                        <SearchResult disease={disease} />
+                        </div>
+                    ))}
+                    </div>
                     <div className="drug-info-additional">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Тип счета</th>
-                                <th>Название</th>
-                                <th>Номер счета</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {selectedDrug.diseases && selectedDrug.diseases.map(disease => (
-                                <tr key={disease.id}>
-                                    <td>{disease.type}</td>
-                                    <td>{disease.disease_name}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
                         <div className="buttons-info">
                             <div className="home-button">
                                 <Link to={`/drugs/`}>

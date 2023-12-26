@@ -2,9 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 10px;
     background-color: #1dd3a2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .logo {
@@ -37,7 +38,7 @@
 }
 
 .header-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #ffffff;
     margin: 0;
@@ -52,7 +53,7 @@
 
 .header-menu-link {
     text-decoration: none;
-    color: #ccc;
+    color: #ffffff;
     transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 &:hover {
      color: #ffffff;
@@ -72,7 +73,7 @@
 
     .header-left,
     .header-right {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .item {

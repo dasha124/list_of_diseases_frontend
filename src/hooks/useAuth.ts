@@ -4,6 +4,8 @@ import {updateUser, cleanUser} from "../store/authSlice";
 import {Response} from "../Types";
 import axios from "axios";
 import {useSession} from "./useSession";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 export function useAuth() {
   const {is_authenticated, is_superuser, user_id, user_name, user_email} = useSelector((state: any) => state.user);
@@ -16,14 +18,14 @@ export function useAuth() {
 
   const sendRequest = async() => {
 
-    const { session_id } = useSession()
+    const { access_token } = useSession()
 
     try {
 
-      const response: Response<any> = await axios(`http://localhost:8000/api/logout/`, {
+      const response: Response<any> = await axios(`${DOMEN}/logout/`, {
         method: "POST",
         headers: {
-          'authorization': `${session_id}`
+          'Authorization': `${access_token}`
         }
       })
 

@@ -1,26 +1,26 @@
-//import "../Login.css"
+import "../Login.css"
 // import {FaLock} from "react-icons/fa6";
 // import {GrMail} from "react-icons/gr";
 import {Response} from "../../../Types";
 import {Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {errorMessage} from "../../../Toasts/Toasts";
 import {useSession} from "../../../hooks/useSession";
 import {useAuth} from "../../../hooks/useAuth";
-//import GeneralButton from "../../../Components/GeneralButton/GeneralButton";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 const SignIn = () => {
     console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
 
     const navigate = useNavigate()
 
-    const { session_id} = useSession()
+    const { setSession, setRefreshSession} = useSession()
+
     const { setUser } = useAuth()
 
     const login = async (formData: any) => {
-
         try {
-            const response:Response<any> = await axios(`http://127.0.0.1:3000/api/login/`, {
+            const response:Response<any> = await axios(`${DOMEN}/login/`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
@@ -28,16 +28,25 @@ const SignIn = () => {
                 data: formData as FormData
             })
 
-            console.log(response.data.headers)
+            console.log("HHHHHHHHHHHHh",response.data.headers)
             console.log(response.headers['set-cookies'])
 
-            session_id(response.data['access_token'])
+            // session_id(response.data['session_id'])
+            // console.log("ssid =", session_id)
+// было
+            // setSession(response.data['session_id'])
+            // setRefreshSession(response.data['session_id'])
+
+//стало
+            setSession(response.data['access_token'])
+            setRefreshSession(response.data['refresh_token'])
 
             const permissions = {
                 is_authenticated: true,
-                is_moderator: response.data["is_moderator"],
+                // is_superuser: response.data["is_superuser"],
+                is_moderator: response.data["is_superuser"],
                 user_id: response.data["user_id"],
-                user_name: response.data["full_name"],
+                user_name: response.data["username"],
                 user_email: response.data["email"]
             }
 
@@ -47,8 +56,8 @@ const SignIn = () => {
 
             //successMessage(response.data["name"])
 
-        } catch {
-            errorMessage()
+        } catch(e) {
+           
         }
     }
 
@@ -87,7 +96,7 @@ const SignIn = () => {
 
 
                 <div className="sign-up-link-container">
-                    <Link to="/auth/register" style={{ textDecoration: 'none' }}>
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
                         <span> Ещё нет аккаунта? </span>
                     </Link>
                 </div>

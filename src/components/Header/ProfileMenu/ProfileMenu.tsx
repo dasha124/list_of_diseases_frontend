@@ -1,4 +1,4 @@
-//import "./ProfileMenu.css"
+// import "./ProfileMenu.css"
 // import { FaChevronRight, FaQuestionCircle } from "react-icons/fa";
 // import { BiLogOut } from "react-icons/bi";
 // import { CgProfile } from "react-icons/cg";
@@ -13,13 +13,16 @@ import {useAuth} from "../../../hooks/useAuth";
 import {useSession} from "../../../hooks/useSession";
 import {useDesktop} from "../../../hooks/useDesktop";
 import {Response} from "../../../Types";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 
 const ProfileMenu = () => {
 
-    const {session_id} = useSession()
+    const {access_token} = useSession()
 
     const {is_authenticated, user_name, setUser} = useAuth()
+    // const {is_authenticated, user_name, is_moderator, user_email, setUser} = useAuth()
 
     const {isDesktopMedium} = useDesktop();
 
@@ -27,12 +30,12 @@ const ProfileMenu = () => {
 
     const fetchDrug = async () => {
         try {
-
-            const response: Response<any> = await axios(`http://localhost:8000/api/drugs/draft/`, {
+            
+            const response: Response<any> = await axios(`${DOMEN}/drugs/draft/`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    'authorization': session_id
+                    'Authorization': access_token 
                 },
             })
 
@@ -51,11 +54,11 @@ const ProfileMenu = () => {
 
         try {
 
-            const response: Response<any> = await axios(`http://localhost:8000/api/check/`, {
+            const response: Response<any> = await axios(`${DOMEN}/check/`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    'authorization': session_id
+                    'Authorization': access_token
                 },
             })
 
@@ -65,7 +68,7 @@ const ProfileMenu = () => {
                     is_authenticated: true,
                     is_moderator: response.data["is_moderator"],
                     user_id: response.data["user_id"],
-                    user_name: response.data["name"],
+                    user_name: response.data["user_name"],
                     user_email: response.data["email"],
                 }
 
@@ -127,7 +130,7 @@ const ProfileMenu = () => {
     if (is_authenticated)
     {
         return (
-            <div className={"profile-menu-wrapper"}>
+            <div className="profile-menu-wrapper">
 
                 <div className={"menu-wrapper " + (isOpen ? "open" : "")}>
 

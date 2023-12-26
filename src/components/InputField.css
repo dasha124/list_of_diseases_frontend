@@ -1,11 +1,13 @@
 .inputField {
     display: flex;
     padding: 12px 0;
+    border: 2px solid rgb(82, 203, 147) !important;
 }
 .inputField > input {
     width: 200px;
     margin-right: 12px;
-    border: 2px solid black;
+    border: 2px solid rgb(82, 203, 147);
     border-radius: 4px;
-    outline: none;
+    /* outline: none; */
 }
+

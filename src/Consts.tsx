@@ -1,4 +1,4 @@
-export const DOMEN = "http://localhost:8000/api/"
+export const DOMEN = "http://192.168.2.124:8000/api"
 
 export const requestTime = 1000
 
@@ -31,15 +31,31 @@ export const iDiseasesMock = [
     }
 ]
 
-interface Option {
-    id: string;
-    name: string;
+
+export interface Option {
+    id: number,
+    name: string
 }
-
-
-export const STATUSES : Option[] = [
+export const STATUSES: Option[] = [
     {
-        id: "e",
+        id: 0,
         name: "Черновик"
     },
+    {
+        id: 1,
+        name: "Сформирована"
+    },
+    {
+        id: 2,
+        name: "Завершена"
+    },
+    {
+        id: 3,
+        name: "Отменена"
+    },
+    {
+        id: 4,
+        name: "Удалена"
+    }
 ]
+

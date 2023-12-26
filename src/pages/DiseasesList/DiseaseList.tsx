@@ -5,15 +5,19 @@ import SearchBar from "./SearchBar/SearchBar";
 import SearchResultsList from "./SearchResultsList/SearchResultsList";
 import {Response} from "../../Types";
 import {Disease, DiseasesContextType, iDiseasesContextState} from "../../Types";
-import {requestTime} from "../../Consts";
+import {requestTime, DOMEN} from "../../Consts";
 import axios from "axios";
 import {useSession} from "../../hooks/useSession";
+
+import "./DiseaseList.css"
 
 export const DiseasesContext = React.createContext<DiseasesContextType>(iDiseasesContextState)
 
 const DiseaseListPage = () => {
 
-    const {session_id} = useSession()
+    console.log("ewFAARFARFAR")
+
+    const {access_token} = useSession()
 
     const [diseases, setDiseases] = useState<Disease[]>([]);
 
@@ -23,13 +27,13 @@ const DiseaseListPage = () => {
 
         try {
 
-            const response: Response<any> = await axios(`http://localhost:8000/api/diseases/?disease_name=${query}`, {
+            const response: Response<any> = await axios(`${DOMEN}/diseases/?disease_name=${query}`, {
             
                 method: "GET",
                 signal: AbortSignal.timeout(requestTime),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    'Authorization': session_id
+                    'Authorization': `${access_token}`
                 },
             });
 
@@ -73,28 +77,12 @@ const DiseaseListPage = () => {
 
 
                 </div>
+
+                <div className="container">
                 { <SearchResultsList /> }
 
-                {/* <div className="bottom">
-                    <div className="disease-list-wrapper">
-
-                        <div className="top-wrapper">
-
-                        </div>
-
-                        <div className="center-wrapper">
-
-                            { <SearchResultsList /> }
-
-                        </div>
-
-                        <div className="bottom-wrapper">
-
-                        </div>
-
-                    </div>
-                </div> */}
-
+                </div>
+            
             </div>
         </DiseasesContext.Provider>
 

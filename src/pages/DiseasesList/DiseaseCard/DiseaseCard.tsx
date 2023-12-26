@@ -13,11 +13,11 @@ import {useAuth} from "../../../hooks/useAuth";
 import {useSession} from "../../../hooks/useSession";
 import {useDraftDrug} from "../../../hooks/useDraftDrug";
 import { AxiosResponse } from 'axios';
-import { Card, Button } from "react-bootstrap";
+
 
 const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: Dispatch<Disease[]> }) => {
 
-    const {session_id} = useSession()
+    const {access_token} = useSession()
 
     const {is_authenticated} = useAuth()
 
@@ -36,7 +36,7 @@ const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: 
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    'Authorization': session_id
+                    'Authorization': access_token
                 },
             });
 
@@ -66,7 +66,7 @@ const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: 
                 signal: AbortSignal.timeout(requestTime),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    'authorization': session_id
+                    'authorization': access_token
                 },
             });
 
@@ -102,7 +102,7 @@ const DiseaseCard = ({ disease, setDiseases }: { disease: Disease, setDiseases: 
 
             <div className="center-container">
 
-                <span className="disease-name">{disease.disease_name}</span>
+                <span className="service-text">{disease.disease_name}</span>
 
             </div>
 

@@ -1,0 +1,90 @@
+.diseases-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* background-color: #1e1e1e; */
+    color: #ffffff;
+  }
+  
+  .filters-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .top-wrapper {
+    height: 10px; /* Здесь может быть любая нужная вам высота */
+  }
+  
+  
+  h3 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .filters-container input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+  
+  .filters-container button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3f51b5;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .disease-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .center-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .search-result-item {
+    width: calc(25% - 10px); /* Здесь может быть любая нужная вам ширина */
+    margin-bottom: 20px; /* Здесь может быть любой нужный вам отступ */
+  }
+
+.container {
+  display: grid;
+  margin-left: 15%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  justify-content: center;
+}
+
+  
+  .item {
+    width: 100%;
+  }
+    

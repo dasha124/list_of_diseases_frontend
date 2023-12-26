@@ -3,10 +3,12 @@ import {updateDrug} from "../store/draftDrugSlice";
 import axios from "axios";
 import {useSession} from "./useSession";
 import {Drug} from "../Types";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 export function useDraftDrug() {
 
-    const { session_id } = useSession()
+    const { access_token } = useSession()
 
     const drug = useSelector((state: { draftDrug: { drug: Drug } }) => state.draftDrug.drug);
 
@@ -18,11 +20,11 @@ export function useDraftDrug() {
 
     const fetchDraftDrug = async () => {
 
-        const response = await axios(`http://127.0.0.1:8000/api/drugs/draft/`, {
+        const response = await axios(`${DOMEN}/drugs/create_drug/`, {
             method: "GET",
             headers: {
                 "Content-type": "drug/json; charset=UTF-8",
-                'authorization': session_id
+                'authorization': access_token
             },
         })
 
@@ -33,10 +35,10 @@ export function useDraftDrug() {
     }
 
     const addDiseaseToDrug = async (disease_id: number) => {
-        const response = await axios(`http://127.0.0.1:8000/api/diseases/${disease_id}/post/`, {
+        const response = await axios(`${DOMEN}/diseases/${disease_id}/post/`, {
             method: "POST",
             headers: {
-                'authorization': session_id
+                'authorization': access_token
             },
         })
 
@@ -49,11 +51,11 @@ export function useDraftDrug() {
     const saveDrug = async () => {
         try {
 
-            await axios(`http://127.0.0.1:8000/api/drugs/${drug.id}/update/`, {
+            await axios(`${DOMEN}/drugs/${drug.id}/update/`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "drug/json; charset=UTF-8",
-                    'authorization': session_id
+                    'authorization': access_token
                 },
                 data: drug
             })
@@ -65,29 +67,28 @@ export function useDraftDrug() {
 
     const sendDrug = async () => {
 
-        const response = await axios.put(`http://127.0.0.1:8000/api/app_create_status/${drug.id}/put/`,
+        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_user/`,
             {
-                status: 2,
+                status: 1,
             },
             {
                 headers: {
-                    'authorization': session_id,
+                    'authorization': access_token,
                 },
 
             })
 
         if (response.status == 200)
         {
-            setDrug(undefined)
+            setDrug(response.data)
         }
     }
 
     const deleteDrug = async () => {
-
-        const response = await axios(`http://127.0.0.1:8000/api/drugs/${drug.id}/delete/`, {
+        const response = await axios(`${DOMEN}/drugs/${drug.id}/delete/`, {
             method: "DELETE",
             headers: {
-                'authorization': session_id
+                'authorization': access_token
             }
         })
 
@@ -97,11 +98,50 @@ export function useDraftDrug() {
         }
     }
 
+
+    
+    const ApproveDrug = async () => {
+        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_admin/`,
+            {
+                status: 2,
+            },
+            {
+                headers: {
+                    'authorization': access_token,
+                },
+
+            })
+
+            if (response.status == 200)
+            {
+                setDrug(response.data)
+            }
+    }
+
+    const DisApproveDrug = async () => {
+        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_admin/`,
+            {
+                status: 3,
+            },
+            {
+                headers: {
+                    'authorization': access_token,
+                },
+
+            })
+
+            if (response.status == 200)
+            {
+                setDrug(response.data)
+            }
+    }
+
+
     const deleteDrugFromDisease = async (disease_id: number) => {
-        const response = await axios(`http://127.0.0.1:8000/api/apps_accs/${disease_id}/${drug.id}/delete/`, {
+        const response = await axios(`${DOMEN}/apps_accs/${disease_id}/${drug.id}/delete/`, {
             method: "DELETE",
             headers: {
-                'authorization': session_id
+                'authorization': access_token
             }
         })
 
@@ -109,6 +149,20 @@ export function useDraftDrug() {
             setDrug(response.data)
         }
     }
+
+
+    // const deleteDrugFromDisease = async (disease_id: number) => {
+    //     const response = await axios(`${DOMEN}/apps_accs/${disease_id}/${drug.id}/delete/`, {
+    //         method: "DELETE",
+    //         headers: {
+    //             'authorization': access_token
+    //         }
+    //     })
+
+    //     if (response.status == 200) {
+    //         setDrug(response.data)
+    //     }
+    // }
 
     return {
         drug,
@@ -118,6 +172,10 @@ export function useDraftDrug() {
         sendDrug,
         deleteDrug,
         deleteDrugFromDisease,
-        fetchDraftDrug
+        fetchDraftDrug,
+
+        ApproveDrug,
+        DisApproveDrug,
+
     };
 }

@@ -5,12 +5,14 @@
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 4px;
+    line-height: 0.7;
 }
 
 .service-text-li {
     font-size: 1rem;
     font-family: Arial;
     margin-left: 3px;
+    line-height: 0.7;
 }
 
 .card {
@@ -18,13 +20,11 @@
     border: 3px solid #1dd3a2;
     height: 250px;
     width: 150px;
-    /*height: 50px;*/ 
     border-radius: 5px;
     float: left;
-    /* clear: right; */
-    /* display: flex; */
     justify-content: center; 
-    /* margin: 5px auto; */
+    background-color: #e7f7f1;
+
 }
 
 
@@ -63,12 +63,19 @@
 }
 
 .card_serv2 {
-    margin-top: 15px;
-    margin-left: 5px; 
+    /* margin-top: 5px; */
+    /* margin-left: 5px;  */
     border: 3px solid #1dd3a2;
-    height: 550px;
+    height: 480px;
     width: 400px;
     border-radius: 5px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
 }
 
 
@@ -133,9 +140,11 @@
 }
 
 .img-card2 {
-    width: 250px;
-    height: 250px;
-    margin-left: 17%;
+    width: 320px;
+    height: 200px;
+    margin-left: 13%;
+
+    object-fit: cover;
 }
 
 
@@ -220,9 +229,17 @@
     align-items: flex-start;
     margin-right: 10px;
     margin-left: 15px;
+    color: #000;
+    /* font-size: 3px; */
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* text-align: center; */
+    position: relative;
+    height: 64px;
+
 }
 
-.account-name {
+.disease-name {
     font-weight: bold;
     color: #999;
     font-size: 14px;
@@ -236,21 +253,24 @@
 
 .right-container {
     display: flex;
-    align-items: center;
-    margin-left: auto;
+    flex-direction: column;
+    align-items: center;    /* margin-left: auto; */
 }
 
-.account-info-button,
-.account-delete-button {
-    margin-left: 10px;
-    padding: 8px 15px;
+.disease-info-button,
+.disease-delete-button {
+    height: 25px;
+    width: 130px;
+    margin-top: 5px; 
     cursor: pointer;
-    background-color: #61dafb;
+    background-color: #1dd3a2;
     color: #fff;
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out;
+    display: inline-block; 
 }
+
 
 .account-info-button:hover,
 .account-delete-button:hover {
@@ -309,3 +329,27 @@
     flex-direction: column;
     height: 100%;
   }
+
+  .home-button2 {
+    align-self: flex-start;
+    margin-top: 425px;
+    margin-left: 48%;
+    
+
+  }
+
+
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+.disease-back-button{
+    font-size: 15px;
+    border-radius: 5px;
+    background: #1dd3a2;
+    border-color: #fff;
+    color: #fff;
+    margin-top: 10px;
+    
+}

@@ -1,16 +1,24 @@
 // @ts-ignore
 import {TableInstance, useTable, usePagination} from "react-table"
 import {useMemo} from "react";
-//import "./Table.css"
+import "./Table.css"
 import axios from "axios";
 import {STATUSES} from "../../../Consts";
 import { Link } from 'react-router-dom';
 import {useQuery} from "react-query";
 import {useSession} from "../../../hooks/useSession";
+import { format } from 'date-fns';
+import {ru} from 'date-fns/locale';
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+
 
 export const DrugsTable = () => {
 
-    const { session_id } = useSession()
+    // const [, setData] = useState<Drug[]>([]);
+
+    
+
+    const { access_token } = useSession()
 
     const COLUMNS = [
         {
@@ -18,36 +26,64 @@ export const DrugsTable = () => {
             accessor: "id"
         },
         {
+            Header: "Название препарата",
+            accessor: "drug_name",
+        },
+        {
             Header: "Статус",
             accessor: "status",
-            Cell: ({ value }: { value?: string }) => {
-                const foundStatus = STATUSES.find((status) => status.id === value);
-                return foundStatus ? foundStatus.name : "Неизвестный статус";
-            }
+            Cell: ({ value }: { value: number }) => {
+                if (value === undefined) {
+                  return "Неизвестный статус";
+                }
+                const selectedStatus = STATUSES.find((status: { id: number })  => status.id === value);
+                const statusName: string = selectedStatus ? selectedStatus.name : 'Неизвестный статус';
+                return statusName;
+              }
+           
 
         },
         {
-            Header: "Счета",
-            accessor: "diseases",
-            Cell: ({ value }: { value?: { name: string }[] }) => {
+            Header: "Дата создания",
+            accessor: "time_create",
+            Cell: ({ value }: { value?: string }) => {
                 if (value) {
-                    return value.map((disease) => disease.name).join(', ');
+                    const parsedDate = format(new Date(value), "d MMMM yyyy 'г.'", { locale: ru });
+                    return parsedDate;
                 }
-                return "Нет счетов";
-            }
-
+                return 'Нет даты';
+            },
         },
         {
             Header: "Дата формирования",
-            accessor: "time_create",
+            accessor: "time_form",
+            Cell: ({ value }: { value?: string }) => {
+                if (value) {
+                    const parsedDate = format(new Date(value), "d MMMM yyyy 'г.'", { locale: ru });
+                    return parsedDate;
+                }
+                return 'Нет даты';
+            },
+        },
+        {
+            Header: "Дата завершения",
+            accessor: "time_finish",
+            Cell: ({ value }: { value?: string }) => {
+                if (value) {
+                    const parsedDate = format(new Date(value), "d MMMM yyyy 'г.'", { locale: ru });
+                    return parsedDate;
+                }
+                return 'Нет даты';
+            },
         }
     ]
+    
     const fetchDrugsData = async () => {
-
-        const {data} = await axios(`http://127.0.0.1:8000/api/drugs/`, {
+    
+        const {data} = await axios(`${DOMEN}/drugs/`, {
             method: "GET",
             headers: {
-                'authorization': `${session_id}`
+                'Authorization': access_token
             }
         })
 
@@ -91,7 +127,7 @@ export const DrugsTable = () => {
     }
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <p>Загрузка...</p>;
     }
 
 
@@ -127,7 +163,7 @@ export const DrugsTable = () => {
                                         style={{ cursor: isIdCell ? 'pointer' : 'default' }}
                                     >
                                         {isIdCell ? (
-                                            <Link to={`/drugs/${row.original.id}/`}>
+                                            <Link className="link" to={`/drugs/${row.original.id}/`}>
                                                 {row.original.id}
                                             </Link>
                                         ) : (

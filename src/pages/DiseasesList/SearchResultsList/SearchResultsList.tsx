@@ -3,7 +3,8 @@ import {useContext} from "react";
 import {DiseasesContext} from "../DiseaseList";
 //import "./SearchResultsList.css";
 import {Disease} from "../../../Types";
-import { Row, Col } from "react-bootstrap";
+// import { Row, Col } from "react-bootstrap";
+// import { Grid, Container } from '@mui/material';
 
 const SearchResultsList = () => {
 
@@ -11,28 +12,14 @@ const SearchResultsList = () => {
 
     return (
 
-        <Row xs={4} md={4} className="g-4">
-        {diseases.map((disease: Disease, index) => (
-            <Col key={index}>
-            <SearchResult disease={disease} />
-            </Col>
-        ))}
-        </Row>
-        
+    <div className="container">
+      {diseases.map((disease: Disease, index) => (
+        <div className="item" key={index}>
+          <SearchResult disease={disease} />
+        </div>
+      ))}
+    </div>
 
-        // <div>
-        //     {diseases.map((disease: Disease) => (
-        //         <SearchResult disease={disease} key={disease.disease_name} />
-        //     ))}
-        // </div>
-
-        // <Row xs={4} md={4} className="g-4">
-        // {disease.map((item, index)=> (
-        //     <Col key={index}>
-        //         <DiseaseItem {...item} />
-        //     </Col>
-        // ))}
-        // </Row>
     );
 }
 

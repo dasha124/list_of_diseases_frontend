@@ -19,7 +19,8 @@ export interface Drug {
     price: number,
     status: string,
     user_id_id: number,
-    diseases?: Disease[],
+    disease?: Disease[],
+    sphere: string,
 
 }
 export type DiseasesContextType = {

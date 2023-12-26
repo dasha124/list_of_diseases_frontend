@@ -6,11 +6,11 @@ export const successMessage = (username: string) => {
     });
 };
 
-export const errorMessage = () => {
-    toast.error(`Неправильный логин или пароль`, {
-        position: toast.POSITION.BOTTOM_RIGHT
-    });
-};
+// export const errorMessage = () => {
+//     toast.error(`Неправильный логин или пароль`, {
+//         position: toast.POSITION.BOTTOM_RIGHT
+//     });
+// };
 
 export const logOutMessage = () => {
     toast.info(`Вы вышли из аккаунта`, {

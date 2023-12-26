@@ -1,6 +1,6 @@
 //import '/home/student/front/list_of_diseases_frontend/src/components/ds.css'
 import { Link, useLocation } from "react-router-dom";
-// import React from "react";
+import React from "react";
 
 function BreadCrumbs(){
     const location = useLocation()
