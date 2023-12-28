@@ -13,31 +13,10 @@ import axios from 'axios';
 
 const SearchResult = ({ disease }: { disease: Disease }) => {
     const {access_token} = useSession()
-    const {is_superuser} = useAuth()
+    const {is_superuser, is_authenticated} = useAuth()
     const { setDiseases } = useContext(DiseasesContext)
 
-    // const onDelete = () => {
-    //     fetch(`${DOMEN}/diseases/${disease.id}/delete/`, {
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //             'Authorization': access_token
-    //         },
-    //     })
-    //         .then((response) => {
-    //             if (response.ok){
-    //                 return response.json()
-    //             }
 
-    //             throw new Error('Something went wrong');
-    //         })
-    //         .then((results) => {
-    //             setDiseases(results)
-    //         })
-    //         .catch((error) => {
-    //             console.log("Ошибка удаления!\n", error)
-    //         });
-    // }
     const onDelete = async () => {
         try {
             const response = await axios.delete(`${DOMEN}/diseases/${disease.id}/delete/`, {
@@ -105,8 +84,8 @@ const SearchResult = ({ disease }: { disease: Disease }) => {
                 </div>
             </div>
         );
-    }
-    else{
+    };
+    if (is_authenticated){
         return (
             <div className="card" key={disease.id}>
     
@@ -123,6 +102,27 @@ const SearchResult = ({ disease }: { disease: Disease }) => {
                     </Link>
     
                     <button className="disease-delete-button" onClick={onAdd}>Добавить</button>
+                    
+                </div>
+            </div>
+        );
+            
+    }
+    else {
+        return (
+            <div className="card" key={disease.id}>
+    
+                {<Card.Img className="img-card" variant="top" src={"data:image/png;base64," + disease.image} />}
+    
+                <div className="left-container">
+                    <span>{disease.disease_name}</span>
+                </div>
+    
+                <div className="right-container">
+    
+                    <Link to={`/diseases/${disease.id}`}>
+                        <button className="disease-info-button">Подробнее</button>
+                    </Link>
                     
                 </div>
             </div>

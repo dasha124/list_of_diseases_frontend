@@ -52,13 +52,13 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
 
 
     const setOk = async () => {
-        await ApproveDrug()
+        await ApproveDrug(selectedDrug?.id!)
         navigate("/drugs")
     }
 
     
     const setNotOk = async () => {
-        await DisApproveDrug()
+        await DisApproveDrug(selectedDrug?.id!)
         navigate("/drugs")
     }
 
@@ -71,8 +71,62 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
         )
     }
 
+    const selectedDrugStatus = getStatusName(selectedDrug?.status);
+
+
 
     if(is_superuser){
+        if (selectedDrugStatus === "Сформирована"){
+            return (
+                <div className="drug-info-background">
+                    <div className={"drug-info-wrapper"}>
+        
+                        <div className="drug-info-details">
+                            <div className="drug-info-details">
+                                <div className="header-name">
+                                    <div className="header-text"> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
+                                </div>
+                                <div className="header-name">
+                                    <div className="header-text">Статус заявки: {getStatusName(selectedDrug?.status)}</div>
+                                    <div className="header-text">Цена препарата: {selectedDrug.price} руб.</div>
+                                    {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
+                                </div>
+        
+                            </div>
+        
+                            <div className="drug-info-additional">
+    
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Название заболевания</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {selectedDrug.disease && selectedDrug.disease.map(disease => (
+                                    <tr key={disease.id}>
+                                        <td>{disease.disease_name}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                                <div className="buttons-info">
+                                    <div className="home-button">
+                                        <Link to={`/drugs/`}>
+                                            <button className="drug-back-button">Вернуться к заявкам</button>
+                                        </Link>
+                                        <button className="drug-back-button_ok" onClick={setOk}>Одобрить</button>
+                                        <button className="drug-back-button_ne_ok" onClick={setNotOk}>Отклонить</button>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            );
+
+        }
         return (
             <div className="drug-info-background">
                 <div className={"drug-info-wrapper"}>
@@ -89,22 +143,29 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                             </div>
     
                         </div>
-    
-                        <div className="container">
-                        {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
-                            <div className="item" key={index}>
-                            <SearchResult disease={disease} />
-                            </div>
-                        ))}
-                        </div>
+
                         <div className="drug-info-additional">
+
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Название заболевания</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {selectedDrug.disease && selectedDrug.disease.map(disease => (
+                                <tr key={disease.id}>
+                                    <td>{disease.disease_name}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
                             <div className="buttons-info">
                                 <div className="home-button">
                                     <Link to={`/drugs/`}>
                                         <button className="drug-back-button">Вернуться к заявкам</button>
                                     </Link>
-                                    <button className="drug-back-button_ok" onClick={setOk}>Одобрить</button>
-                                    <button className="drug-back-button_ne_ok" onClick={setNotOk}>Отклонить</button>
+
                                 </div>
                             </div>
                         </div>

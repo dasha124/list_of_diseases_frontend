@@ -1,5 +1,6 @@
 //import "./GeneralButton.css";
 import React from "react";
+import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 
 
 interface GeneralButtonProps {
@@ -9,7 +10,7 @@ interface GeneralButtonProps {
 
 const GeneralButton: React.FC<GeneralButtonProps> = ({ text, onClick }) => {
     return (
-        <div className="general-button" onClick={onClick}>
+        <div className="service-text_but" onClick={onClick}>
             <span>{text}</span>
         </div>
     );

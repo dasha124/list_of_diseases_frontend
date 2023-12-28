@@ -18,11 +18,18 @@ export interface Drug {
     time_finish: string,
     price: number,
     status: string,
-    user_id_id: number,
+    user_id: number,
     disease?: Disease[],
     sphere: string,
 
 }
+
+export interface User {
+    id: number;
+    username: string,
+}
+
+
 export type DiseasesContextType = {
     diseases: Disease[],
     setDiseases: React.Dispatch<React.SetStateAction<Disease[] | []>>

@@ -65,9 +65,9 @@ export function useDraftDrug() {
         }
     }
 
-    const sendDrug = async () => {
+    const sendDrug = async (id: number) => {
 
-        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_user/`,
+        const response = await axios.put(`${DOMEN}/drugs/${id}/update_st_user/`,
             {
                 status: 1,
             },
@@ -80,7 +80,7 @@ export function useDraftDrug() {
 
         if (response.status == 200)
         {
-            setDrug(response.data)
+            setDrug(undefined)
         }
     }
 
@@ -98,10 +98,26 @@ export function useDraftDrug() {
         }
     }
 
+    const deleteDrug_e = async () => {
+            const response = await axios.delete(`${DOMEN}/drugs/delete_entered_drug/`,{
+                headers: {
+                    "Content-type": "drug/json; charset=UTF-8",
+                    'authorization': access_token
+                },
+            })
+            if (response.status == 200)
+            {
+                setDrug(undefined)
+            }
+
+
+
+    }
+
 
     
-    const ApproveDrug = async () => {
-        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_admin/`,
+    const ApproveDrug = async (id: number) => {
+        const response = await axios.put(`${DOMEN}/drugs/${id}/update_st_admin/`,
             {
                 status: 2,
             },
@@ -118,8 +134,8 @@ export function useDraftDrug() {
             }
     }
 
-    const DisApproveDrug = async () => {
-        const response = await axios.put(`${DOMEN}/drugs/${drug.id}/update_st_admin/`,
+    const DisApproveDrug = async (id: number) => {
+        const response = await axios.put(`${DOMEN}/drugs/${id}/update_st_admin/`,
             {
                 status: 3,
             },
@@ -137,8 +153,9 @@ export function useDraftDrug() {
     }
 
 
-    const deleteDrugFromDisease = async (disease_id: number) => {
-        const response = await axios(`${DOMEN}/apps_accs/${disease_id}/${drug.id}/delete/`, {
+    
+    const deleteDrugFromDisease = async (disease_id: number, id: number) => {
+        const response = await axios(`${DOMEN}/apps_accs/${disease_id}/${id}/delete/`, {
             method: "DELETE",
             headers: {
                 'authorization': access_token
@@ -149,6 +166,11 @@ export function useDraftDrug() {
             setDrug(response.data)
         }
     }
+
+    
+
+    
+
 
 
     // const deleteDrugFromDisease = async (disease_id: number) => {
@@ -176,6 +198,8 @@ export function useDraftDrug() {
 
         ApproveDrug,
         DisApproveDrug,
+        deleteDrug_e,
+        
 
     };
 }

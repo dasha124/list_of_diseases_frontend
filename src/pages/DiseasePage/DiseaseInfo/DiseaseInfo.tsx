@@ -10,11 +10,16 @@ import {Link} from "react-router-dom";
 // import {DiseaseDetail} from "../../../modules/get-disease-detail";
 import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+import {useAuth} from "/home/student/front/list_of_diseases_frontend/src/hooks/useAuth.ts"
+import {useSession} from "../../../hooks/useSession";
+
 
 
 const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
 
     const [arr, setArr] = useState<string[]>();
+    const {access_token} = useSession()
+    const {is_superuser, is_authenticated} = useAuth()
 
     // const {access_token} = useSession()
     // const [isMock, setIsMock] = useState<boolean>(true);
@@ -91,10 +96,16 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
                 
             </Card>
             <div className="home-button2">
-                    <Link to={`/diseases`}>
-                        <button className="disease-back-button">Вернуться к списку заболеваний</button>
-                    </Link>
-                </div>
+            {is_authenticated ? (
+                <Link to="/diseases">
+                <button className="disease-back-button">Вернуться к списку заболеваний</button>
+                </Link>
+            ) :
+            <Link to="/diseases">
+                <button className="disease-back-button2">Вернуться к списку заболеваний</button>
+                </Link> 
+            }
+            </div>
             
         </div>
 

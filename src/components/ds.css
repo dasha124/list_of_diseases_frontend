@@ -8,6 +8,16 @@
     line-height: 0.7;
 }
 
+.service-text_but {
+    text-indent:13px;
+    /* display: inline; */
+    color: black;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 4px;
+    line-height: 0.7;
+}
+
 .service-text-li {
     font-size: 1rem;
     font-family: Arial;
@@ -27,7 +37,17 @@
 
 }
 
-
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+  }
+.center-container{
+    background-color: #e7f7f1;
+   border-radius: 5px;
+   padding-bottom: 2px;
+   padding-left: 2px;
+   padding-right: 2px;
+}
 .card-body {
     text-align: center;
 }
@@ -351,5 +371,15 @@
     border-color: #fff;
     color: #fff;
     margin-top: 10px;
+    
+}
+
+.disease-back-button2{
+    font-size: 15px;
+    border-radius: 5px;
+    background: #1dd3a2;
+    border-color: #fff;
+    color: #fff;
+    margin-top: 70px;
     
 }

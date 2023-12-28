@@ -12,7 +12,7 @@ const DraftDrugPage = () => {
     const [,setDiseases] = useState<Disease[]>(/* initial value */);
     const {is_authenticated, is_superuser} = useAuth()
 
-    const {drug, sendDrug, deleteDrug} = useDraftDrug()
+    const {drug, sendDrug, deleteDrug_e} = useDraftDrug()
 
     // const {setDrug} = useDraftDrug()
 
@@ -41,12 +41,15 @@ const DraftDrugPage = () => {
 
 
     const handleAdd = async () => {
-        await sendDrug()
+        await sendDrug(drug.id)
         navigate("/drugs")
     }
 
     const handleDelete = async () => {
-        await deleteDrug()
+        // const disease_id = onDelete1
+        // await deleteDrugFromDisease(onDelete1,drug.id)
+        // авэйт на функцию удаления: передаем шв услуги и она уз заявки черновика этого пользователя ее удалит
+        await deleteDrug_e()
         navigate("/diseases")
     }
 
@@ -63,12 +66,13 @@ const DraftDrugPage = () => {
                 </div>
 
                 <div className="bottom">
-                    {cards}
-                    {/* {drug.disease && drug.disease.map((disease: Disease, index) => (
-                        <div className="item" key={index}>
-                        <SearchResult disease={disease} />
-                        </div>
-                    ))} */}
+                    <div className="row1">
+                        {cards?.slice(0,2)}
+                    </div>
+                    <div className="row2">
+                        {cards?.slice(2,4)}
+                    </div>
+                   
                 </div>
             </div>
 

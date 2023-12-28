@@ -1,7 +1,7 @@
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+
 // import { Orbit } from '../../modules/ds';
 // import store from '../../store/store';
 // import { getOrbitByName } from '../../modules/getOrbitByName';
@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import "./DiseaseCardAdd.css"
 
 const DiseaseCardAdd: FC = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     // const { orbit_name } = useParams();
     // const [orbit, setOrbit] = useState<Orbit | null>(null);
     // const [imageFile, setImageFile] = useState<File | null>(null);

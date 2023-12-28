@@ -14,9 +14,9 @@
     border-radius: 8px;
     transition: background-color 0.3s ease-in-out;
     width: 90%;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
+    height: 100%;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 .top {
     font-weight: bold;
@@ -54,3 +54,34 @@
     font-size: 14px;
     margin-top: 5px;
 }
+
+
+.row1 {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    margin-left: 15px;
+    padding-left: 10px;
+}
+
+.row2 {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    padding-left: 10px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* ваш остальной код */
+}
+
+.row1 .item {
+    margin-right: 10px; /* добавить 10 пикселей пространства между элементами */
+  }
+  
+  .row2 .item {
+    margin-bottom: 10px; /* добавить 10 пикселей пространства между элементами */
+  }
