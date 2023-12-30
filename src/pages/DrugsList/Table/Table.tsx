@@ -45,8 +45,10 @@ export const DrugsTable = () => {
     const fetchUsersData = async () => {
         try {
             const usersResponse = await axios.get(`${DOMEN}/get_users/`);
+            
             setUsers(usersResponse.data);
             setIsLoadingUsers(false);
+            console.log("uuuuuuuuuuseeeeeeeer =", usersResponse.data)
 
         } catch (error) {
           console.log("Ошибка загрузки пользователей!", error);
@@ -89,13 +91,13 @@ export const DrugsTable = () => {
         fetchDrugsData();
     }, []);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            fetchDrugsData();
-        }, 10000); // Интервал обновления данных каждые 10 секунд
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         fetchDrugsData();
+    //     }, 10000); // Интервал обновления данных каждые 10 секунд
 
-        return () => clearInterval(intervalId);
-    }, []);
+    //     return () => clearInterval(intervalId);
+    // }, []);
 
 
     useEffect(() => {
@@ -272,13 +274,21 @@ export const DrugsTable = () => {
                                 <div className="column">{parsedDate(drug.time_finish)}</div>
                                 
         
-                                <div className="column">{getStatusName(Number(drug.status)) === "Сформирована" ? getStatusName(Number(drug.status)) : "-"}</div>
+                                {/* <div className="column">{getStatusName(Number(drug.status)) === "Сформирована" ? getStatusName(Number(drug.status)) : "-"}</div> */}
+                                    
+                                {getStatusName(Number(drug.status)) !== "Сформирована" && (
+                                    <div className="column">
+                                        -
+                                    </div>
+                                    )}
+
                                     {getStatusName(Number(drug.status)) === "Сформирована" && (
-                                        <div className="column">
-                                        <button className="drug-back-button_ok" onClick={() => setOk(drug.id)}>Одобрить</button>
-                                        <button className="drug-back-button_ne_ok" onClick={() => setNotOk(drug.id)}>Отклонить</button>
+                                        <div className="column5">
+                                        <button className="drug-back-button_ok1" onClick={() => setOk(drug.id)}>Одобрить</button>
+                                        <button className="drug-back-button_ne_ok1" onClick={() => setNotOk(drug.id)}>Отклонить</button>
                                         </div>
                                     )}
+
                             </div>
                              
                         ))}
@@ -292,41 +302,41 @@ export const DrugsTable = () => {
     }
 
 
-//     return (
-//         <div className="table-wrapper0">
-//             <div className="table-container">
-//                 <div className="row_">
-//                     <div className="column1">№</div>
-//                     <div className="column">Статус</div>
-//                     <div className="column">Дата создания</div>
-//                     <div className="column">Дата формирования</div>
-//                     <div className="column">Дата завершения</div>
+    return (
+        <div className="table-wrapper0">
+            <div className="table-container">
+                <div className="row_">
+                    <div className="column1">№</div>
+                    <div className="column_u">Статус</div>
+                    <div className="column_u">Дата создания</div>
+                    <div className="column_u">Дата формирования</div>
+                    <div className="column_u">Дата завершения</div>
                     
-//                 </div>  
-//                 {data.map((drug: Drug) => (
-//                     <div className="row" key={drug.id}>
+                </div>  
+                {filteredDrugs.map((drug: Drug) => (
+                    <div className="row" key={drug.id}>
 
                        
 
-//                         <div className="column1"> 
-//                         <Link  to={`/drugs/${drug.id}/`}>{drug.id}</Link>
+                        <div className="column1"> 
+                        <Link className="link" to={`/drugs/${drug.id}/`}>{drug.id}</Link>
                          
-//                         </div>
+                        </div>
 
-//                         <div className="column"> {getStatusName(Number(drug.status))}  </div>
+                        <div className="column_u"> {getStatusName(Number(drug.status))}  </div>
                   
-//                         <div className="column">{parsedDate(drug.time_create)}</div>
+                        <div className="column_u">{parsedDate(drug.time_create)}</div>
 
-//                         <div className="column">{parsedDate(drug.time_form)}</div>
+                        <div className="column_u">{parsedDate(drug.time_form)}</div>
 
-//                         <div className="column">{parsedDate(drug.time_finish)}</div>
+                        <div className="column_u">{parsedDate(drug.time_finish)}</div>
                         
                         
-//                     </div>
-//                 ))}
-//             </div>
+                    </div>
+                ))}
+            </div>
 
 
-//         </div>
-//     );
+        </div>
+    );
 }

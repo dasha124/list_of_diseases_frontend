@@ -2,8 +2,8 @@
 
 import { Card } from "react-bootstrap";
 import {Dispatch, useEffect, useState} from "react";
-import {Disease} from "../../../Types";
-import {requestTime} from "../../../Consts";
+import {Disease} from "../../../../Types";
+import {requestTime} from "../../../../Consts";
 // import {useNavigate} from 'react-router-dom';
 import {Link} from "react-router-dom";
 // import {useSession} from "../../../hooks/useSession";
@@ -11,13 +11,11 @@ import {Link} from "react-router-dom";
 import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
 import {useAuth} from "/home/student/front/list_of_diseases_frontend/src/hooks/useAuth.ts"
-import {useSession} from "../../../hooks/useSession";
-
-import axios from 'axios';
+import {useSession} from "../../../../hooks/useSession";
 
 
 
-const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
+const DiseaseCardAdd = ({ disease_id, selectedDisease, setSelectedDisease }:{ disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
 
     const [arr, setArr] = useState<string[]>();
     const {access_token} = useSession()
@@ -31,18 +29,23 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
     const fetchData = async () => {
 
         try {
-            const response1 = await axios.get(`${DOMEN}/diseases/${disease_id}/`, {
-                method: "GET"
+            const response1 = await fetch(`${DOMEN}/diseases/${disease_id}/`, {
+                method: "GET",
+                signal: AbortSignal.timeout(requestTime)
             });
-    
-            const disease = response1.data;
-    
-            setSelectedDisease(disease);
-    
+
+            if (!response1.ok){
+                //MockDiseaseInfo()
+            }
+
+            const disease: Disease = await response1.json()
+
+            setSelectedDisease(disease)
+
         } catch (e) {
-    
+
         }
-    
+
     };
    
 
@@ -112,4 +115,4 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
 
 
 
-export default  DiseaseInfo;
+export default  DiseaseCardAdd;

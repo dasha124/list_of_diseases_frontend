@@ -84,19 +84,7 @@ export function useDraftDrug() {
         }
     }
 
-    const deleteDrug = async () => {
-        const response = await axios(`${DOMEN}/drugs/${drug.id}/delete/`, {
-            method: "DELETE",
-            headers: {
-                'authorization': access_token
-            }
-        })
-
-        if (response.status == 200)
-        {
-            setDrug(undefined)
-        }
-    }
+    
 
     const deleteDrug_e = async () => {
             const response = await axios.delete(`${DOMEN}/drugs/delete_entered_drug/`,{
@@ -154,8 +142,8 @@ export function useDraftDrug() {
 
 
     
-    const deleteDrugFromDisease = async (disease_id: number, id: number) => {
-        const response = await axios(`${DOMEN}/apps_accs/${disease_id}/${id}/delete/`, {
+    const deleteDiseaseFromDrug = async (disease_id: number, id: number) => {
+        const response = await axios(`${DOMEN}/drugs/${disease_id}/${id}/delete_disease_from_drug/`, {
             method: "DELETE",
             headers: {
                 'authorization': access_token
@@ -192,8 +180,7 @@ export function useDraftDrug() {
         addDiseaseToDrug,
         saveDrug,
         sendDrug,
-        deleteDrug,
-        deleteDrugFromDisease,
+        deleteDiseaseFromDrug,
         fetchDraftDrug,
 
         ApproveDrug,

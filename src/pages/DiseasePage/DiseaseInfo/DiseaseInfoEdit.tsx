@@ -17,7 +17,8 @@ import axios from 'axios';
 
 
 
-const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
+const DiseaseInfoEdit = ({ disease_id, selectedDisease, setSelectedDisease }:
+    { disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
 
     const [arr, setArr] = useState<string[]>();
     const {access_token} = useSession()
@@ -29,23 +30,16 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
     // const navigate = useNavigate();
 
     const fetchData = async () => {
-
         try {
             const response1 = await axios.get(`${DOMEN}/diseases/${disease_id}/`, {
                 method: "GET"
             });
-    
             const disease = response1.data;
-    
             setSelectedDisease(disease);
-    
         } catch (e) {
-    
         }
-    
     };
    
-
     useEffect(() => {
         fetchData()
         if (selectedDisease?.image) {
@@ -58,6 +52,51 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
         const splitArr = selectedDisease?.simptoms.split(",");
         setArr(splitArr);
     }, [selectedDisease?.simptoms]);
+
+
+    // Новые данные
+    const [formData, setFormData] = useState({
+        disease_name: "",
+        general_info: "",
+        simptoms: "",
+        // image: new Blob([""], { type: "image/jpeg" }),
+        status: true
+    });
+
+    const setInitialFormData = (object: any) => {
+        if (object) {
+            setFormData({
+                disease_name: object.disease_name || "",
+                general_info: object.general_info || "",
+                simptoms: object.simptoms || "",
+                // image: object.image
+                //     ? new Blob([object.image], { type: "image/jpeg" })
+                //     : new Blob([""], { type: "image/jpeg" }),
+                status: object.status || true
+            });
+        }
+    };
+
+    
+    // Ваш компонент
+    useEffect(() => {
+        // Вызываем функцию для установки начальных значений при изменении selectedGeographicalObject
+        setInitialFormData(selectedDisease);
+    }, [selectedDisease]);
+
+    const handleChange = (field: string, value: string) => {
+        setFormData(prevData => ({
+            ...prevData,
+            [field]: field === 'size' ? parseFloat(value) : value,
+        }));
+    };
+
+    useEffect(() => {
+        if (formData.disease_name !== "" && formData.general_info !== ""  && formData.simptoms !== "") {
+            // editDisease();
+        }
+    }, [])
+
 
 
     if (!selectedDisease){
@@ -112,4 +151,4 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
 
 
 
-export default  DiseaseInfo;
+export default  DiseaseInfoEdit;

@@ -46,9 +46,6 @@ const DraftDrugPage = () => {
     }
 
     const handleDelete = async () => {
-        // const disease_id = onDelete1
-        // await deleteDrugFromDisease(onDelete1,drug.id)
-        // авэйт на функцию удаления: передаем шв услуги и она уз заявки черновика этого пользователя ее удалит
         await deleteDrug_e()
         navigate("/diseases")
     }

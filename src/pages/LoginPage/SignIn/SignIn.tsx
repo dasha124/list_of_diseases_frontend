@@ -28,8 +28,8 @@ const SignIn = () => {
                 data: formData as FormData
             })
 
-            console.log("HHHHHHHHHHHHh",response.data.headers)
-            console.log(response.headers['set-cookies'])
+            // console.log("HHHHHHHHHHHHh",response.data.headers)
+            // console.log(response.headers['set-cookies'])
 
             // session_id(response.data['session_id'])
             // console.log("ssid =", session_id)

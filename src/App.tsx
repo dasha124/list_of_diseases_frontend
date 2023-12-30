@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes, Navigate, Outlet, useLocation } from 'reac
 import Header from "../src/components/Header/Header";
 import BreadCrumbs from "/home/student/front/list_of_diseases_frontend/src/components/BreadCrumbs/BreadСrumbs.tsx";
 import DiseasePage from "./pages/DiseasePage/DiseasePage";
+import DiseasePageEdit from "./pages/DiseasePage/DiseasePageEdit";
 import SignIn from "./pages/LoginPage/SignIn/SignIn";
 import SignUp from "./pages/LoginPage/SignUp/SignUp";
 import {Provider} from "react-redux"
@@ -19,7 +20,9 @@ import {useState} from "react";
 import DrugPage from "./pages/DrugPage/DrugPage";
 import NotFoundPage from "./pages/NotFoundPage"
 import React from "react";
-import DiseaseCardAdd from "/home/student/front/list_of_diseases_frontend/src/pages/DiseasesList/DiseaseCardAdd/DiseaseCardAdd.tsx"
+import DiseaseCardAdd from "./pages/DiseasePage/DiseaseInfo/DiseaseCardAdd/DiseaseCardAdd_1"
+
+
 
 const LoginFormLayout = () => {
   return (
@@ -91,7 +94,9 @@ function App() {
 
                     <Route path="/diseases/" element={<DiseaseListPage />} />
                     <Route path="/diseases/:id" element={<DiseasePage selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease} />} />
-                    {/* <Route path="/diseases/:id/edit" element={<DiseaseEditPage />} /> moderator - later*/}
+                    <Route path="/diseases/:id/update" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
+                    <Route path="/disease/add/" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
+                    
 
                     <Route path="/drugs/" element={<DrugsPage />} />
 
@@ -99,7 +104,6 @@ function App() {
 
                     <Route path="/drugs/create_drug/" element={<DraftDrugPage />} />
 
-                    <Route path="/disease/add/" element={<DiseaseCardAdd />} />
 
                     
                     

@@ -32,7 +32,8 @@ export interface User {
 
 export type DiseasesContextType = {
     diseases: Disease[],
-    setDiseases: React.Dispatch<React.SetStateAction<Disease[] | []>>
+    setDiseases: React.Dispatch<React.SetStateAction<Disease[] | []>>,
+
 }
 
 export const iDiseasesContextState = {
@@ -42,8 +43,11 @@ export const iDiseasesContextState = {
 
 export type SelectedDiseaseContextType = {
     selectedDisease: Disease | null,
-    setSelectedDisease: React.Dispatch<React.SetStateAction<Disease | null>>
+    // selectedDisease: Disease
+    setSelectedDisease: React.Dispatch<React.SetStateAction<Disease>>
+
 }
+
 
 
 export interface Option {
@@ -55,5 +59,11 @@ export const iSelectedDiseaseContextState = {
     selectedDisease: null,
     setSelectedDisease: () => {}
 }
+
+// export const iSelectedDiseaseContextState: SelectedDiseaseContextType = {
+//     selectedDisease: Disease | null,
+//     setSelectedDisease: () => {}
+// }
+
 
 export type Response<T> = Promise<AxiosResponse<T>> | T;

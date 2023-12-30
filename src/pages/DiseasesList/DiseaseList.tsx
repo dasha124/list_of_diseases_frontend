@@ -1,10 +1,9 @@
-//import "./DiseaseList.css"
 import * as React from 'react'
 import {useEffect, useState} from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResultsList from "./SearchResultsList/SearchResultsList";
 import {Response} from "../../Types";
-import {Disease, DiseasesContextType, iDiseasesContextState} from "../../Types";
+import {Disease, DiseasesContextType, iDiseasesContextState, iSelectedDiseaseContextState, SelectedDiseaseContextType } from "../../Types";
 import {requestTime, DOMEN} from "../../Consts";
 import axios from "axios";
 import {useSession} from "../../hooks/useSession";
@@ -12,10 +11,10 @@ import {useSession} from "../../hooks/useSession";
 import "./DiseaseList.css"
 
 export const DiseasesContext = React.createContext<DiseasesContextType>(iDiseasesContextState)
+export const SelectDiseaseContext = React.createContext<SelectedDiseaseContextType>(iSelectedDiseaseContextState)
+
 
 const DiseaseListPage = () => {
-
-    console.log("ewFAARFARFAR")
 
     const {access_token} = useSession()
 
@@ -24,9 +23,7 @@ const DiseaseListPage = () => {
     const [query, setQuery] = useState<string>("");
 
     const searchDiseases = async () => {
-
         try {
-
             const response: Response<any> = await axios(`${DOMEN}/diseases/?disease_name=${query}`, {
             
                 method: "GET",
@@ -36,8 +33,6 @@ const DiseaseListPage = () => {
                     'Authorization': `${access_token}`
                 },
             });
-
-
             if (response.status == 200){
                 setDiseases(response.data)
             }
@@ -62,20 +57,13 @@ const DiseaseListPage = () => {
 
                     <div className="top">
 
-
                         <SearchBar fetchData={(query) => {
                             setQuery(query)
                         }}/>
 
                     </div>
 
-                    <div className={"bottom"}>
-
-
-                    </div>
-
-
-
+                    <div className={"bottom"}></div>
                 </div>
 
                 <div className="container">

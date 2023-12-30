@@ -46,7 +46,7 @@
     border-radius: 10px;
     overflow: hidden;
     margin-top: 20px;
-    width: 1050px;
+    width: 1090px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -105,14 +105,14 @@
 .table-container {
     display: flex;
     flex-direction: column;
-    width: 1050px;
+    width: 1090;
   }
   
   .row {
     display: flex;
     align-items: center;
     padding: 3px;
-    width: 1050px;
+    width: 1090;
   }
 
   .row_ {
@@ -121,7 +121,7 @@
     padding: 3px;
     background-color: #1dd3a2;
     font-size: 25px;
-    width: 1050px;
+    width: 1090;
   }
 
   .column {
@@ -168,6 +168,38 @@
     /* hyphens:auto, */
     overflow-wrap:break-word,
     
+  }
+
+  .column4_0 {
+    padding: 35px;
+    text-align: left;
+    color: #ffffff;
+    font-size: 19px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 15%;
+    flex-wrap: wrap;
+    /* hyphens:auto, */
+    overflow-wrap:break-word,
+    
+  }
+
+
+  .column5 {
+    padding: 4px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 19px;
+    width: 15%;
+  }
+
+  .column_u {
+    padding: 4px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 19px;
+    width: 25%;
   }
 
   
@@ -245,6 +277,51 @@
     margin-left: 20px;
     margin-top: 5px;
     width: 90%
+}
+
+
+.drug-back-button_ok1 {
+  color: #e4f0ed;
+  /* padding: 10px 20px; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease-in-out; */
+  background-color: #2be262;
+  margin-left: 20px;
+  margin-top: 5px;
+  width: 90%
+}
+
+
+
+.disease-update {
+  color: #e4f0ed;
+  /* padding: 10px 20px; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease-in-out; */
+  background-color: #125919;
+  margin-left: 20px;
+  margin-top: 5px;
+  width: 90%
+}
+
+
+.drug-back-button_ne_ok1 {
+  /* background: #c91f1f; */
+  /* #e4f0ed */
+  color: #e4f0ed;
+  /* padding: 10px 20px; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #e22b2b;
+  margin-left: 20px;
+  margin-top: 5px;
+  width: 90%
 }
 
 .filter-select {

@@ -7,9 +7,9 @@ export function useSession() {
     const refresh_token = cookies.get("refresh_token");
 
     
-    console.log("doc =", document.cookie);
-    console.log('Access Token:', access_token);
-    console.log('Refresh Token:', refresh_token);
+    // console.log("doc =", document.cookie);
+    // console.log('Access Token:', access_token);
+    // console.log('Refresh Token:', refresh_token);
     // console.log("ssssssssss  =", session_id)
 
     const setSession = (value: any) => {

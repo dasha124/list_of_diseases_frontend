@@ -11,7 +11,7 @@ import SearchResult from "/home/student/front/list_of_diseases_frontend/src/page
 const DrugConstructor = () => {
 
     const {drug, fetchDraftDrug} = useDraftDrug()
-    console.log("drrrrrrrrruuuuuuuuug = ",drug)
+    // console.log("drrrrrrrrruuuuuuuuug = ",drug)
 
 
     useEffect(() => {
