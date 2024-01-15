@@ -92,13 +92,13 @@ export const DrugsTable = () => {
         fetchDrugsData();
     }, []);
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         fetchDrugsData();
-    //     }, 10000); // Интервал обновления данных каждые 10 секунд
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            fetchDrugsData();
+        }, 10000); // Интервал обновления данных каждые 10 секунд
 
-    //     return () => clearInterval(intervalId);
-    // }, []);
+        return () => clearInterval(intervalId);
+    }, []);
 
     useEffect(() => {
         const savedFilters = localStorage.getItem('filters');
@@ -134,6 +134,7 @@ export const DrugsTable = () => {
         setFilteredData(filteredDrugs);
     }, [filteredData, startDate, endDate, selectedStatus]);
 
+ 
     
     const getCreator = (userId: number) => {
     const user = users.find(user => user.id === userId);
