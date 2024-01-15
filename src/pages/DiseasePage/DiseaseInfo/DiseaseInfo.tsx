@@ -112,30 +112,7 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
         )
     }
 
-    // if (isMock){
 
-    //     return (
-    //         <div className={"disease-info-wrapper"}>
-    //             <div className="disease-info-details">
-    //                 <h3>{selectedDisease.disease_name}</h3>
-    //                 <img src={imageUrl} alt="Disease Icon" />
-    //                 <span>Баланс: 0</span>
-    //                 <span>Номер счета: номер Вашего счета</span>
-    //                 <span>БИК банка: INK</span>
-    //                 <span>Валюта: руб</span>
-    //                 <span>Тип счета: карта</span>
-    //                 <div className="buttons-info">
-    //                     <button className="disease-delete-button-info" onClick={onDelete}>Заморозить</button>
-    //                     <div className="home-button">
-    //                         <Link to={`/diseases`}>
-    //                             <button className="disease-back-button">Вернуться к счетам</button>
-    //                         </Link>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     )
-    // }
     return (
         <div>
             {/* <BreadCrumbs /> */}
