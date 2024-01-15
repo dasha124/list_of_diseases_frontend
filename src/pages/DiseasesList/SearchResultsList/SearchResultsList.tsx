@@ -8,19 +8,56 @@ import {useSession} from "../../../hooks/useSession";
 import { Link } from "react-router-dom";
 import "/home/student/front/list_of_diseases_frontend/src/pages/DrugsList/Table/Table.css"
 import { Card } from "react-bootstrap";
-import DiseaseCardAdd from "../../DiseasePage/DiseaseInfo/DiseaseCardAdd/DiseaseCardAdd_1";
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+
 
 
 const SearchResultsList = () => {
 
-    const { diseases } = useContext(DiseasesContext)
+    // const { diseases } = useContext(DiseasesContext)
+    const [diseases, setDiseases] = useState<any[]>([]);
 
     const {access_token} = useSession()
     const {is_superuser, is_authenticated} = useAuth()
 
-    const update = (diseaseId: number) => {
-      return diseaseId
+
+  const fetchData = async () => {
+    try {
+      const response1 = await axios.get(`${DOMEN}/diseases/`, {
+        headers: {
+        
+          'Authorization': `${access_token}`
+      },
+      });
+      const diseases = response1.data;
+      setDiseases(diseases)
+     
+    } catch (e) {
+    }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
+  const onDelete1 = (diseaseId: number) => {
+    axios.delete(`${DOMEN}/diseases/${diseaseId}/delete/`,{
+        headers: {
+            "Content-type": "disease/json; charset=UTF-8",
+            'Authorization': `${access_token}`
+        },
+    }).then(() => {
+        fetchData(); 
+    }).catch(error => {
+        console.log(error);
+    });
+};
+
 
 
     
@@ -31,6 +68,10 @@ const SearchResultsList = () => {
     if (is_superuser){
       return (
           <div className="table-wrapper">
+
+            <Link to={`/diseases/add/`} className="link-container">
+            <button className="button-style">Добавить заболевание</button>
+            </Link>
               <div className="table-container">
                   <div className="row_">
                       <div className="column1">№</div>
@@ -52,7 +93,7 @@ const SearchResultsList = () => {
                         <div className="column">
                           <div>{disease.disease_name}</div>
                           <div>
-                            {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + disease.image} height={100} width={100} />}
+                            {<Card.Img className="img-card" variant="top" src={"data:image/png;base64," + disease.image} height={100} width={100} />}
                           </div>
                         </div>
 
@@ -74,9 +115,10 @@ const SearchResultsList = () => {
 
                         <Link to={`/diseases/${disease.id}/update/`}>
                         <button className="disease-update" >Редактировать</button>
-                        <button className="disease-update" >Удалить</button>
                         </Link>
 
+                        <button className="disease-update0" onClick={() => onDelete1(Number(disease.id))}>Удалить</button>
+                        
                     
                           
                       </div>

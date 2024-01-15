@@ -5,15 +5,6 @@ import {Link} from "react-router-dom";
 import {Disease} from "../../../Types";
 import {motion} from "framer-motion"
 import {useDraftDrug} from "../../../hooks/useDraftDrug";
-// import {DOMEN, requestTime} from "../../../Consts";
-// //import "./DiseaseCard.css"
-// // import GeneralButton from "../../../components/GeneralButton/GeneralButton";
-// import axios from "axios";
-// import {diseaseAddedMessage, diseaseAlreadyAddedMessage, requestErrorMessage} from "../../../Toasts/Toasts";
-import {useAuth} from "../../../hooks/useAuth";
-import {useSession} from "../../../hooks/useSession";
-// import {useDraftDrug} from "../../../hooks/useDraftDrug";
-// import { AxiosResponse } from 'axios';
 import { Card } from "react-bootstrap";
 
 
@@ -42,8 +33,8 @@ const DiseaseCard = ({ disease }: { disease: Disease, setDiseases: Dispatch<Dise
 
             
             <div className="center-container">
-                <div>
-                    {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + disease.image} height={100} width={100} />}
+                <div className="card_pos">
+                    {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + disease.image}  />}
                 </div>
 
                 <span className="service-text">{disease.disease_name}</span>
@@ -55,7 +46,7 @@ const DiseaseCard = ({ disease }: { disease: Disease, setDiseases: Dispatch<Dise
 
                 
 
-                <button className="disease-delete-button" onClick={() => onDelete1(disease.id)}>Удалить</button>
+                <button className="disease-delete-button" onClick={() => onDelete1(Number(disease.id))}>Удалить</button>
 
                 </div>
 

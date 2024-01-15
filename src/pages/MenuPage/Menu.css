@@ -1,0 +1,22 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menu button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 25px;
+    background-color: #1dd3a2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 500px;
+  }
+  
+  .menu button:hover {
+    background-color: #1dd3a2;
+  }
+  

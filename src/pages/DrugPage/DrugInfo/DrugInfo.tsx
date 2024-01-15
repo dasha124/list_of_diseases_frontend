@@ -14,7 +14,6 @@ import {useDraftDrug} from "../../../hooks/useDraftDrug";
 
 const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | undefined, selectedDrug:Drug| undefined, setSelectedDrug:Dispatch<Drug | undefined> }) => {
 
-    // const [sphereName, setSphereName] = useState('');
     const navigate = useNavigate()
 
     const getStatusName = (status: number | string): string => {
@@ -84,32 +83,24 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                         <div className="drug-info-details">
                             <div className="drug-info-details">
                                 <div className="header-name">
-                                    <div className="header-text"> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
+                                    <div className="header-text"> Заявка № {selectedDrug.id}</div>
                                 </div>
                                 <div className="header-name">
                                     <div className="header-text">Статус заявки: {getStatusName(selectedDrug?.status)}</div>
-                                    <div className="header-text">Цена препарата: {selectedDrug.price} руб.</div>
-                                    {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
+                                    
                                 </div>
         
                             </div>
         
                             <div className="drug-info-additional">
     
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Название заболевания</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {selectedDrug.disease && selectedDrug.disease.map(disease => (
-                                    <tr key={disease.id}>
-                                        <td>{disease.disease_name}</td>
-                                    </tr>
-                                ))}
-                                </tbody>
-                            </table>
+                            <div className="container">
+                    {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
+                        <div className="item" key={index}>
+                        <SearchResult disease={disease} />
+                        </div>
+                    ))}
+                    </div>
                                 <div className="buttons-info">
                                     <div className="home-button">
                                         <Link to={`/drugs/`}>
@@ -134,32 +125,24 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                     <div className="drug-info-details">
                         <div className="drug-info-details">
                             <div className="header-name">
-                                <div className="header-text"> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
+                                <div className="header-text"> Заявка № {selectedDrug.id}</div>
                             </div>
                             <div className="header-name">
                                 <div className="header-text">Статус заявки: {getStatusName(selectedDrug?.status)}</div>
-                                <div className="header-text">Цена препарата: {selectedDrug.price} руб.</div>
-                                {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
+                                
                             </div>
     
                         </div>
 
                         <div className="drug-info-additional">
 
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Название заболевания</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {selectedDrug.disease && selectedDrug.disease.map(disease => (
-                                <tr key={disease.id}>
-                                    <td>{disease.disease_name}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                        <div className="container">
+                    {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
+                        <div className="item" key={index}>
+                        <SearchResult disease={disease} />
+                        </div>
+                    ))}
+                    </div>
                             <div className="buttons-info">
                                 <div className="home-button">
                                     <Link to={`/drugs/`}>
@@ -188,8 +171,6 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                         </div>
                         <div className="header-name">
                             <div>Статус заявки: {getStatusName(selectedDrug?.status)}</div>
-                            <div>Цена препарата: {selectedDrug.price}</div>
-                            {/* <h3>Статус заявки: {selectedDrug?.status}</h3> */}
                         </div>
 
                     </div>

@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
     const {access_token } = useSession()
 
-    const {is_authenticated, setUser} = useAuth()
+    const {is_authenticated, setUser, is_superuser} = useAuth()
 
     const {setDrug} = useDraftDrug()
 
@@ -89,19 +89,32 @@ const Header: React.FC = () => {
                 <div className="header-left">
                     {/*<img src={logo} className="logo" alt="Bank Logo"/>*/}
                     <div>
-                        <h5 className="header-title">Регистрация новых репаратов</h5>
+                        <h5 className="header-title">Регистрация новых препаратов</h5>
                     </div>
                 </div>
 
                 <div className="header-links">
 
                 <Link to="/diseases" className="header-menu-link" style={{textDecoration: 'none'}}>
-                        <span className="item">Заболевания</span>
-                    </Link>
+                    <span className="item">Заболевания</span>
+                </Link>
 
-                    <Link to="/drugs" className="header-menu-link" style={{textDecoration: 'none'}}>
-                        <span className="item">Препараты</span>
-                    </Link>
+                <Link to="/drugs" className="header-menu-link" style={{textDecoration: 'none'}}>
+                    <span className="item">Препараты</span>
+                </Link>
+
+                <Link to="/drugs/create_drug/" className="header-menu-link" style={{textDecoration: 'none'}}>
+                    <span className="item">Выбранные заболевания</span>
+                </Link>
+
+
+                {is_superuser &&
+                <Link to="/diseases/add/" className="header-menu-link" style={{textDecoration: 'none'}}>
+                    <span className="item">Добавить заболевание</span>
+                </Link>
+                }
+
+
 
                     
                 </div>
@@ -115,7 +128,7 @@ const Header: React.FC = () => {
             <div className="header-left">
                 {/*<img src={logo} className="logo" alt="Bank Logo"/>*/}
                 <div>
-                    <h2 className="header-title">Регистрация новых репаратов</h2>
+                    <h2 className="header-title">Регистрация новых препаратов</h2>
                 </div>
             </div>
 

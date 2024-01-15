@@ -4,12 +4,11 @@
 import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { successMessage} from "../../../Toasts/Toasts";
 import {useSession} from "../../../hooks/useSession";
 import {useAuth} from "../../../hooks/useAuth";
 import {Response} from "../../../Types";
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
-
+import { successMessage, errorMessage } from "../../../Toasts/Toasts";
 
 
 const SignUp = () => {
@@ -45,12 +44,12 @@ const SignUp = () => {
 
             setUser(permissions)
 
-            navigate("/diseases");
+            navigate("/");
 
             successMessage(response.data["username"])
 
         } catch(e) {
-            
+            errorMessage();
         }
     }
 
@@ -102,17 +101,17 @@ const SignUp = () => {
             <form className="inputs" onSubmit={handleSubmit}>
 
                 <div className="input">
-                    {/* <FaUser className="icon" /> */}
+                  
                     <input type="text" placeholder="Логин" name="username" />
                 </div>
 
                 <div className="input">
-                    {/* <GrMail className="icon" /> */}
+  
                     <input type="email" placeholder="Почта" name="email" />
                 </div>
 
                 <div className="input">
-                    {/* <FaLock className="icon" /> */}
+
                     <input type="password"  placeholder="Пароль" name="password" />
                 </div>
 

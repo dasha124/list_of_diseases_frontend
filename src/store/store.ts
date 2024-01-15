@@ -7,6 +7,8 @@ import authReducer from "./authSlice"
 import drugFormReducer from "./drugFormSlice"
 import drugsReducer from "./drugsSlice"
 import diseaseFilters from "./diseaseFiltersSlice"
+import filtersReducer from './filtersSlice';
+
 
 export default configureStore({
     reducer: {
@@ -16,6 +18,24 @@ export default configureStore({
         selectedDrug: selectedDrugReducer,
         drugs: drugsReducer,
         user: authReducer,
-        drugForm: drugFormReducer
+        drugForm: drugFormReducer,
+        filters: filtersReducer,
     }
 });
+
+
+// export const store = configureStore({
+//     reducer: {
+//         selectedDisease: diseaseReducer,
+//         diseaseFilters: diseaseFilters,
+//         draftDrug: draftDrugReducer,
+//         selectedDrug: selectedDrugReducer,
+//         drugs: drugsReducer,
+//         user: authReducer,
+//         drugForm: drugFormReducer,
+//         filters: filtersReducer,
+//     }
+// });
+
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppDispatch = typeof store.dispatch;

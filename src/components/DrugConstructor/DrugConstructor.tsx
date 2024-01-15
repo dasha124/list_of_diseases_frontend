@@ -11,32 +11,12 @@ import SearchResult from "/home/student/front/list_of_diseases_frontend/src/page
 const DrugConstructor = () => {
 
     const {drug, fetchDraftDrug} = useDraftDrug()
-    // console.log("drrrrrrrrruuuuuuuuug = ",drug)
-
-
+    
     useEffect(() => {
         fetchDraftDrug()
     }, [])
 
 
-    // if (drug?.disease &&drug.disease.length == 0){
-    //     return(
-    //         <div>GECM</div>
-
-    //     )
-        
-    // }
-    // else{
-    //     return (
-    //         <Link to="/drugs" className="drug-constructor-container">
-    //         <span className="title">Ваша заявка</span>
-    //         {drug?.disease && drug.disease.length > 0 && <span className="badge">{drug.disease.length}</span>}
-    //     </Link>
-            
-    //     )
-    // }
-
-    
 
     
 
@@ -48,12 +28,7 @@ const DrugConstructor = () => {
             
             {drug?.disease && drug.disease.length > 0 && <span className="badge">{drug.disease.length}</span>}
 
-            {/* {drug.disease && drug.disease.map((disease: Disease, index) => (
-                        <div className="item" key={index}>
-                        <SearchResult disease={disease} />
-                        </div>
-                    ))} */}
-        </Link>
+            </Link>
         
     )
 }

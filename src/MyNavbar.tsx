@@ -10,7 +10,6 @@ function MyNavbar() {
     <Navbar className="color-navbar" expand="lg">
         <Container>
             <Link to="/diseases/">
-                {/* <Image src={logoImage} roundedCircle className="logo-img" alt="Логотип AnyMetro" /> */}
             </Link>
             <Navbar.Brand as={Link} to="/diseases/" className="brand-text">
                 Список заболеваний

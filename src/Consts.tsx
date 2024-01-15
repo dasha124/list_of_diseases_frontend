@@ -59,3 +59,15 @@ export const STATUSES: Option[] = [
     }
 ]
 
+export const STATUSES_T: Option[] = [
+
+    {
+        id: 1,
+        name: "Успех"
+    },
+    {
+        id: 2,
+        name: "Неуспех"
+    }
+]
+

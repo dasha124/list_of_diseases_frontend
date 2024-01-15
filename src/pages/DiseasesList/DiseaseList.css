@@ -9,19 +9,19 @@
   .filters-container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
   }
   
   .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-top: 10px;
   }
 
   .top-wrapper {
-    height: 10px; /* Здесь может быть любая нужная вам высота */
+    height: 5px; /* Здесь может быть любая нужная вам высота */
   }
   
   

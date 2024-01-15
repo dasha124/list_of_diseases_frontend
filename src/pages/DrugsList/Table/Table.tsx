@@ -3,7 +3,7 @@ import {TableInstance, useTable, usePagination} from "react-table"
 import {useNavigate} from "react-router-dom";
 import "./Table.css"
 import axios from "axios";
-import {STATUSES, Option} from "../../../Consts";
+import {STATUSES, Option, STATUSES_T} from "../../../Consts";
 import { Link } from 'react-router-dom';
 import {useQuery} from "react-query";
 import {useSession} from "../../../hooks/useSession";
@@ -14,6 +14,10 @@ import { Drug } from "../../../Types";
 import { useDraftDrug } from "../../../hooks/useDraftDrug";
 import {useAuth} from "../../../hooks/useAuth";
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStartDate,  } from '/home/student/front/list_of_diseases_frontend/src/store/filtersSlice.ts';
+// import {store, RootState, AppDispatch} from '/home/student/front/list_of_diseases_frontend/src/store/store.ts';
+
 
 
 
@@ -31,8 +35,8 @@ export const DrugsTable = () => {
     const [startDate, setStartDate] = useState<string | null>(null);
     const [endDate, setEndDate] = useState<string | null>(null);
     const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
-
-    // const [loaded, setLoaded] = useState(false);    
+    const [filters, setFilters] = useState<string>('');
+  
     
 
     const { access_token } = useSession()
@@ -40,15 +44,12 @@ export const DrugsTable = () => {
     const { ApproveDrug, DisApproveDrug} = useDraftDrug()
     const navigate = useNavigate()
 
-    // let users: any[] = [];
-    // let drugs: any[] = [];
     const fetchUsersData = async () => {
         try {
             const usersResponse = await axios.get(`${DOMEN}/get_users/`);
             
             setUsers(usersResponse.data);
             setIsLoadingUsers(false);
-            console.log("uuuuuuuuuuseeeeeeeer =", usersResponse.data)
 
         } catch (error) {
           console.log("Ошибка загрузки пользователей!", error);
@@ -99,6 +100,13 @@ export const DrugsTable = () => {
     //     return () => clearInterval(intervalId);
     // }, []);
 
+    useEffect(() => {
+        const savedFilters = localStorage.getItem('filters');
+        if (savedFilters) {
+          setFilters(savedFilters);
+        }
+      }, []);
+
 
     useEffect(() => {
         // Фильтрация данных при изменении фильтров
@@ -131,6 +139,13 @@ export const DrugsTable = () => {
     const user = users.find(user => user.id === userId);
     return user ? user.email : 'Unknown';
     }
+    
+    const getModer = (userId: number) => {
+        const user = users.find(user => user.id === userId);
+        return user ? user.email : 'Unknown';
+ }
+
+    
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedUserId = parseInt(event.target.value);
@@ -156,15 +171,18 @@ export const DrugsTable = () => {
         return <p>Ошибка загрузки</p>;
     }
 
-    // if (isLoading) {
-    //     return <p>Загрузка...</p>;
-    // }
 
-   
     const getStatusName = (status: number): string => {
         const selectedStatus = STATUSES.find((option: Option) => option.id === status);
         return selectedStatus ? selectedStatus.name : '';
     }
+
+    const getTestStatusName = (status: number): string => {
+        const selectedStatus = STATUSES_T.find((option: Option) => option.id === status);
+        return selectedStatus ? selectedStatus.name : '';
+    }
+
+    
 
     const parsedDate= (date: string): string => {
         if (date) {
@@ -177,6 +195,7 @@ export const DrugsTable = () => {
     const handleStartDateChange = (date: string) => {
         setStartDate(date);
     };
+ 
 
     const handleEndDateChange = (date: string) => {
         setEndDate(date);
@@ -248,6 +267,7 @@ export const DrugsTable = () => {
                         <div className="column">Дата создания</div>
                         <div className="column">Дата формирования</div>
                         <div className="column">Дата завершения</div>
+                        <div className="column_m">Модератор</div>
                         <div className="column">Изменить статус</div>
                     </div>  
                     {(isLoadingUsers || isLoadingDrugs) ? 'Loading...' : (
@@ -272,6 +292,23 @@ export const DrugsTable = () => {
                                 <div className="column">{parsedDate(drug.time_form)}</div>
         
                                 <div className="column">{parsedDate(drug.time_finish)}</div>
+
+                             
+
+                                {(getStatusName(Number(drug.status)) !== "Завершена" && getStatusName(Number(drug.status)) !== "Отменена") && (
+                                    <div className="column_m">
+                                        -
+                                    </div>
+                                    )}
+
+                               
+                                    {(getStatusName(Number(drug.status)) === "Завершена" || getStatusName(Number(drug.status)) === "Отменена") && (
+                                        <div className="column_m">
+                                       {getModer(Number(drug.moderator_id))}
+                                       
+                                        </div>
+                                    )}
+                                
                                 
         
                                 {/* <div className="column">{getStatusName(Number(drug.status)) === "Сформирована" ? getStatusName(Number(drug.status)) : "-"}</div> */}
@@ -307,10 +344,11 @@ export const DrugsTable = () => {
             <div className="table-container">
                 <div className="row_">
                     <div className="column1">№</div>
-                    <div className="column_u">Статус</div>
+                    <div className="column_u">Статус заявки</div>
                     <div className="column_u">Дата создания</div>
                     <div className="column_u">Дата формирования</div>
                     <div className="column_u">Дата завершения</div>
+                    <div className="column_u">Результат клинического испытания</div>
                     
                 </div>  
                 {filteredDrugs.map((drug: Drug) => (
@@ -330,6 +368,8 @@ export const DrugsTable = () => {
                         <div className="column_u">{parsedDate(drug.time_form)}</div>
 
                         <div className="column_u">{parsedDate(drug.time_finish)}</div>
+
+                        <div className="column_u"> {getTestStatusName(Number(drug.test_status))}  </div>
                         
                         
                     </div>

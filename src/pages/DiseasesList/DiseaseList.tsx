@@ -8,6 +8,7 @@ import {requestTime, DOMEN} from "../../Consts";
 import axios from "axios";
 import {useSession} from "../../hooks/useSession";
 
+
 import "./DiseaseList.css"
 
 export const DiseasesContext = React.createContext<DiseasesContextType>(iDiseasesContextState)
@@ -47,6 +48,8 @@ const DiseaseListPage = () => {
     useEffect(() => {
         searchDiseases()
     }, [query])
+
+    
 
     return (
         <DiseasesContext.Provider value={{diseases, setDiseases}}>

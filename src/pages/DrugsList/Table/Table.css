@@ -125,11 +125,19 @@
   }
 
   .column {
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 19px;
+    width: 16%;
+  }
+
+  .column_m {
     padding: 4px;
     text-align: center;
     color: #ffffff;
     font-size: 19px;
-    width: 15%;
+    width: 9%;
   }
 
  .column1 {
@@ -307,6 +315,47 @@
   margin-top: 5px;
   width: 90%
 }
+
+.disease-update0 {
+  color: #e4f0ed;
+  /* padding: 10px 20px; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease-in-out; */
+  background-color: #125919;
+  margin-left: 20px;
+  margin-top: 5px;
+  /* width: 40% */
+}
+
+.disease-update1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15px;
+  background-color: #e5efed;
+  font-size: 25px;
+  height: 25px;
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.button-style {
+  height: 25px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #e5efed;
+  background-color: #2be262;
+  border-color: #2be262;
+}
+
+
 
 
 .drug-back-button_ne_ok1 {

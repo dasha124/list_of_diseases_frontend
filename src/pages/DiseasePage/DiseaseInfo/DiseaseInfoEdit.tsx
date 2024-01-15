@@ -12,143 +12,114 @@ import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
 import {useAuth} from "/home/student/front/list_of_diseases_frontend/src/hooks/useAuth.ts"
 import {useSession} from "../../../hooks/useSession";
+import "./DiseaseInfoEdit.css"
+
 
 import axios from 'axios';
 
 
 
-const DiseaseInfoEdit = ({ disease_id, selectedDisease, setSelectedDisease }:
-    { disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
+interface DiseaseInfoEditProps { disease_id: number | undefined; selectedDisease: Disease | undefined; setSelectedDisease: Dispatch<Disease | undefined>;}
 
-    const [arr, setArr] = useState<string[]>();
-    const {access_token} = useSession()
-    const {is_superuser, is_authenticated} = useAuth()
+const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedDisease, setSelectedDisease}) => {
 
-    // const {access_token} = useSession()
-    // const [isMock, setIsMock] = useState<boolean>(true);
-    // const [imageUrl, setImageUrl] = useState('');
-    // const navigate = useNavigate();
-
-    const fetchData = async () => {
-        try {
-            const response1 = await axios.get(`${DOMEN}/diseases/${disease_id}/`, {
-                method: "GET"
-            });
-            const disease = response1.data;
-            setSelectedDisease(disease);
-        } catch (e) {
-        }
-    };
-   
-    useEffect(() => {
-        fetchData()
-        if (selectedDisease?.image) {
-            return () => {selectedDisease.image};
-        }
-    }, [selectedDisease?.image])
-
-   
-    useEffect(() => {
-        const splitArr = selectedDisease?.simptoms.split(",");
-        setArr(splitArr);
-    }, [selectedDisease?.simptoms]);
-
-
-    // Новые данные
-    const [formData, setFormData] = useState({
-        disease_name: "",
-        general_info: "",
-        simptoms: "",
-        // image: new Blob([""], { type: "image/jpeg" }),
-        status: true
-    });
-
-    const setInitialFormData = (object: any) => {
-        if (object) {
-            setFormData({
-                disease_name: object.disease_name || "",
-                general_info: object.general_info || "",
-                simptoms: object.simptoms || "",
-                // image: object.image
-                //     ? new Blob([object.image], { type: "image/jpeg" })
-                //     : new Blob([""], { type: "image/jpeg" }),
-                status: object.status || true
-            });
-        }
-    };
-
-    
-    // Ваш компонент
-    useEffect(() => {
-        // Вызываем функцию для установки начальных значений при изменении selectedGeographicalObject
-        setInitialFormData(selectedDisease);
-    }, [selectedDisease]);
-
-    const handleChange = (field: string, value: string) => {
-        setFormData(prevData => ({
-            ...prevData,
-            [field]: field === 'size' ? parseFloat(value) : value,
-        }));
-    };
-
-    useEffect(() => {
-        if (formData.disease_name !== "" && formData.general_info !== ""  && formData.simptoms !== "") {
-            // editDisease();
-        }
-    }, [])
+  const [diseaseName, setDiseaseName] = useState("");
+  const [Info, setDiseaseInfo] = useState("");
+  const [Simpt, setDiseaseSimpt] = useState("");
+  const [file, setFile] = useState<File | null>(null);
 
 
 
-    if (!selectedDisease){
-        return (
+  const { access_token } = useSession();
+
+  const fetchData = async () => {
+    try {
+      const response1 = await axios.get(`${DOMEN}/diseases/${disease_id}/`, {
+        method: "GET",
+      });
+      const disease = response1.data;
+      setSelectedDisease(disease);
+      setDiseaseName(disease.disease_name);
+      setDiseaseInfo(disease.general_info);
+      setDiseaseSimpt(disease.simptoms)
+    } catch (e) {
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const saveChanges = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('disease_name', diseaseName);
+      formData.append('general_info', Info);
+      formData.append('simptoms', Simpt);
+      if (file) {
+        formData.append('image', file);
+      }
+      
+      await axios.put(`${DOMEN}/diseases/${disease_id}/update/`, formData, {
+        headers: {
+            'Authorization': `${access_token}`
+        },
+      });
+
+      fetchData();
+    } catch (e) {
+    }
+  };
+
+
+
+  return (
+    <div className="card-container">
+      <Card className="card0">
+        <div>
+          {selectedDisease ? (
             <div>
+                {<Card.Img  variant="top" src={"data:image/png;base64," + selectedDisease?.image} height={90} width={110} />}
+              <div style={{ marginBottom: '5px' }}>
+                <input
+                  type="text"
+                  value={diseaseName}
+                  onChange={(e) => setDiseaseName(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <textarea
+                    style={{ fontFamily: 'Arial' }}
+                    value={Info}
+                    onChange={(e) => setDiseaseInfo(e.target.value)}
+                />
+            </div>
+            <div style={{ marginBottom: '3px' }}>
+                <textarea
+                    style={{ fontFamily: 'Arial' }}
+                    value={Simpt}
+                    onChange={(e) => setDiseaseSimpt(e.target.value)}
+                />
+            </div>
+
+
+            <div>
+              <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
 
             </div>
-        )
-    }
 
-    return (
-        <div className="card-wrapper">
-            {/* <BreadCrumbs /> */}
-            <Card className="card_serv2">
-                {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + selectedDisease?.image} />}
-                <div>
 
-                    <p className="service-text"> { selectedDisease.disease_name }</p>
 
-                    <p></p>
-                    <p className="service-text"> Характерные симптомы:</p>
-                
-                    <ul>
-                        {arr?.map((simptom, index) => (
-                            <li className="service-text" key={index}>
-                                <li>{simptom}</li>
-                            </li>
-                        ))}
-                    </ul>
-
-                </div>
-                
-                
-            </Card>
-            <div className="home-button2">
-            {is_authenticated ? (
-                <Link to="/diseases">
-                <button className="disease-back-button">Вернуться к списку заболеваний</button>
-                </Link>
-            ) :
-            <Link to="/diseases">
-                <button className="disease-back-button2">Вернуться к списку заболеваний</button>
-                </Link> 
-            }
+              <button className="link0" onClick={saveChanges}>Сохранить</button>
             </div>
-            
+          ) : (
+            <p>Загрузка...</p>
+          )}
         </div>
+      </Card>
+    </div>
+  );
+};
 
-
-    )
-    }
-
-
-
-export default  DiseaseInfoEdit;
+export default DiseaseInfoEdit;

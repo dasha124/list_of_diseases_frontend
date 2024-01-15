@@ -52,7 +52,6 @@ const SearchResult = ({ disease }: { disease: Disease }) => {
           throw new Error('Something went wrong');
         })
         .then((results) => {
-          // Обновляем список diseases или другую необходимую информацию после успешного добавления
           setDiseases(results);
         })
         .catch((error) => {
@@ -79,7 +78,7 @@ const SearchResult = ({ disease }: { disease: Disease }) => {
                         <button className="disease-info-button">Подробнее</button>
                     </Link>
     
-                    <button className="disease-delete-button" onClick={onDelete}>Удалить</button>
+                    {/* <button className="disease-delete-button" onClick={onDelete}>Удалить</button> */}
                     
                 </div>
             </div>

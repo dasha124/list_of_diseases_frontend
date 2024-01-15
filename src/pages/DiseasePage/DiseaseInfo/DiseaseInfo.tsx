@@ -75,10 +75,13 @@ const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disea
                 {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + selectedDisease?.image} />}
                 <div>
 
-                    <p className="service-text"> { selectedDisease.disease_name }</p>
+                    <p className="service-text"> Название заболевания:  { selectedDisease.disease_name }</p>
 
                     <p></p>
-                    <p className="service-text"> Характерные симптомы:</p>
+
+                    <p className="service-text"> Общая информация:  { selectedDisease.general_info }</p>
+                    <p></p>
+                    <p className="service-text" > Характерные симптомы:</p>
                 
                     <ul>
                         {arr?.map((simptom, index) => (

@@ -83,38 +83,6 @@ const ProfileMenu = () => {
 
     }
 
-    // const refreshSession = async () => {
-    //     try {
-    //
-    //         console.log("refresh")
-    //
-    //         const response: Response = await axios(`http://localhost:8000/api/refresh/`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-type": "application/json; charset=UTF-8",
-    //                 'authorization': `${refresh_token}`
-    //             },
-    //         })
-    //
-    //         console.log(response.status)
-    //         console.log(response.data)
-    //
-    //         if (response.status == 201)
-    //         {
-    //             const permissions = {
-    //                 is_authenticated: true,
-    //                 is_moderator: response.data["is_moderator"],
-    //                 user_id: response.data["user_id"],
-    //                 user_name: response.data["name"],
-    //                 user_email: response.data["email"],
-    //             }
-    //
-    //             setUser(permissions)
-    //         }
-    //     } catch (e: any) {
-    //         console.log(e.status);
-    //     }
-    // }
 
     useEffect(() => {
 
@@ -169,50 +137,3 @@ const ProfileMenu = () => {
 }
 
 export default ProfileMenu;
-//
-// const ProfileMenuT = () => {
-//     const [isOpen, setIsOpen] = useState<boolean>(false)
-//
-//     return (
-//         <div className={"profile-menu-wrapper"}>
-//             <div className={"user-avatar-container"}>
-//                 <div className={"user-avatar"} onClick={() => {setIsOpen(!isOpen)}} />
-//                 <span></span>
-//             </div>
-//
-//             <div className={"sub-menu-wrapper " + (isOpen ? "open" : "")}>
-//                 <div className={"sub-menu"}>
-//                     <div className={"user-info"}>
-//                         <span>Коновалов Илья</span>
-//                     </div>
-//
-//                     <hr/>
-//
-//                     <a href="/" className={"sub-menu-link"}>
-//                         <CgProfile className={"left-icon"}/>
-//                         <span> Профиль</span>
-//                         <FaChevronRight className={"right-icon"} />
-//                     </a>
-//
-//
-//                     <a href="/" className={"sub-menu-link"}>
-//                         <FaQuestionCircle className={"left-icon"}/>
-//                         <span> Помощь</span>
-//                         <FaChevronRight className={"right-icon"} />
-//                     </a>
-//
-//
-//                     <a href="/" className={"sub-menu-link"}>
-//                         <BiLogOut className={"left-icon"}/>
-//                         <span> Выйти</span>
-//                         <FaChevronRight className={"right-icon"} />
-//                     </a>
-//
-//                 </div>
-//             </div>
-//         </div>
-//
-//     )
-// }
-//
-// export default ProfileMenuT;

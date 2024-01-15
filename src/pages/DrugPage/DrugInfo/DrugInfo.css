@@ -79,6 +79,8 @@
 .drug-back-button {
     /* background: #c91f1f; */
     /* #e4f0ed */
+   
+
     color: #e4f0ed;
     padding: 10px 20px;
     border: none;
@@ -87,6 +89,7 @@
     transition: background-color 0.3s ease-in-out;
     background-color: #1dd3a2;
     margin-left: 20px;
+    
 }
 
 

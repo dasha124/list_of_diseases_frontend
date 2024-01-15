@@ -6,7 +6,8 @@ import DiseasePageEdit from "./pages/DiseasePage/DiseasePageEdit";
 import SignIn from "./pages/LoginPage/SignIn/SignIn";
 import SignUp from "./pages/LoginPage/SignUp/SignUp";
 import {Provider} from "react-redux"
-import store from "./store/store"
+import store from "./store/store" 
+// import { store } from "/home/student/front/list_of_diseases_frontend/src/store/store"
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import DrugConstructor from "../src/components/DrugConstructor/DrugConstructor";
@@ -20,7 +21,8 @@ import {useState} from "react";
 import DrugPage from "./pages/DrugPage/DrugPage";
 import NotFoundPage from "./pages/NotFoundPage"
 import React from "react";
-import DiseaseCardAdd from "./pages/DiseasePage/DiseaseInfo/DiseaseCardAdd/DiseaseCardAdd_1"
+import DiseaseCardAdd from "./pages/DiseasePage/DiseaseInfo/DiseaseCardAdd/DiseaseCardAdd"
+import Menu from "/home/student/front/list_of_diseases_frontend/src/pages/MenuPage/Menu.tsx"
 
 
 
@@ -39,8 +41,6 @@ const TopPanelWrapper = () => {
   return (
       <div className="top-panels-wrapper">
         <BreadCrumbs />
-        {is_authenticated && location.pathname.includes("diseases") && <DrugConstructor /> }
-        {/* { <DrugConstructor /> } */}
       </div>
   )
 }
@@ -51,6 +51,7 @@ function App() {
   const [selectedDrug, setSelectedDrug] = useState<Drug | undefined>(undefined);
   const [selectedDisease, setSelectedDisease] = useState<Disease | undefined>(undefined);
   const queryClient = new QueryClient()
+  
 
   return (
       <QueryClientProvider client={queryClient}>
@@ -73,29 +74,16 @@ function App() {
 
                   <Routes>
 
-                    {/* <Route path="/" element={<Navigate to="/home/" replace />} />
-
-
-                    <Route path="/auth/" element={<LoginFormLayout />} >
-
-                      <Route path="" element={<Navigate to="login/" replace />} />
-
-                      <Route path="login/" element={<SignIn />} />
-
-                      <Route path="/register/" element={<SignUp />} />
-
-                    </Route> */}
 
                     <Route path="/register/" element={<SignUp />} />
                     <Route path="/login/" element={<SignIn />} />
-                    {/* <Route path="/" element={< NotFoundPage/>} /> */}
 
-                    <Route path="/" element={<DiseaseListPage />} />
+                    <Route path="/" element={<Menu />} />
 
                     <Route path="/diseases/" element={<DiseaseListPage />} />
                     <Route path="/diseases/:id" element={<DiseasePage selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease} />} />
                     <Route path="/diseases/:id/update" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
-                    <Route path="/disease/add/" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
+                    <Route path="/diseases/add/" element={<DiseaseCardAdd selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
                     
 
                     <Route path="/drugs/" element={<DrugsPage />} />

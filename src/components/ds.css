@@ -28,7 +28,7 @@
 .card {
     margin: 5px 20px 5px 10px; 
     border: 3px solid #1dd3a2;
-    height: 250px;
+    height: 230px;
     width: 150px;
     border-radius: 5px;
     float: left;
@@ -255,7 +255,7 @@
     font-family: Arial, Helvetica, sans-serif;
     /* text-align: center; */
     position: relative;
-    height: 64px;
+    height: 50px;
 
 }
 
@@ -370,7 +370,7 @@
     background: #1dd3a2;
     border-color: #fff;
     color: #fff;
-    margin-top: 10px;
+    margin-top: 40px;
     
 }
 
@@ -382,4 +382,15 @@
     color: #fff;
     margin-top: 70px;
     
+}
+
+.cardImage {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    
+
+}
+.card_pos{
+    text-align: center;
 }

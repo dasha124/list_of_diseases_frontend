@@ -7,6 +7,7 @@ import axios from "axios";
 import {useSession} from "../../../hooks/useSession";
 import {useAuth} from "../../../hooks/useAuth";
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+import { successMessage, errorMessage } from "../../../Toasts/Toasts";
 
 
 const SignIn = () => {
@@ -28,16 +29,7 @@ const SignIn = () => {
                 data: formData as FormData
             })
 
-            // console.log("HHHHHHHHHHHHh",response.data.headers)
-            // console.log(response.headers['set-cookies'])
 
-            // session_id(response.data['session_id'])
-            // console.log("ssid =", session_id)
-// было
-            // setSession(response.data['session_id'])
-            // setRefreshSession(response.data['session_id'])
-
-//стало
             setSession(response.data['access_token'])
             setRefreshSession(response.data['refresh_token'])
 
@@ -52,12 +44,12 @@ const SignIn = () => {
 
             setUser(permissions)
 
-            navigate("/diseases/");
+            navigate("/");
 
-            //successMessage(response.data["name"])
+            successMessage(response.data["name"])
 
         } catch(e) {
-           
+            errorMessage();
         }
     }
 

@@ -1,9 +1,9 @@
 import {AxiosResponse} from "axios";
 
 export interface Disease {
-    id: number,
+    id: number | undefined,
     type: string,
-    disease_name: string,
+    disease_name: string | undefined,
     general_info: string,
     simptoms: string,
     image: string,
@@ -16,11 +16,11 @@ export interface Drug {
     time_create: string,
     time_form: string,
     time_finish: string,
-    price: number,
     status: string,
     user_id: number,
+    moderator_id: number,
     disease?: Disease[],
-    sphere: string,
+    test_status: string,
 
 }
 
