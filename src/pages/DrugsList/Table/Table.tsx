@@ -14,8 +14,8 @@ import { Drug } from "../../../Types";
 import { useDraftDrug } from "../../../hooks/useDraftDrug";
 import {useAuth} from "../../../hooks/useAuth";
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setStartDate,  } from '/home/student/front/list_of_diseases_frontend/src/store/filtersSlice.ts';
+import { useDispatch } from "react-redux";
+
 // import {store, RootState, AppDispatch} from '/home/student/front/list_of_diseases_frontend/src/store/store.ts';
 
 
@@ -35,7 +35,7 @@ export const DrugsTable = () => {
     const [startDate, setStartDate] = useState<string | null>(null);
     const [endDate, setEndDate] = useState<string | null>(null);
     const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
-    const [filters, setFilters] = useState<string>('');
+    const [, setFilters] = useState<string>('');
   
     
 
@@ -43,6 +43,7 @@ export const DrugsTable = () => {
     const { is_superuser} = useAuth()
     const { ApproveDrug, DisApproveDrug} = useDraftDrug()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const fetchUsersData = async () => {
         try {
@@ -158,7 +159,7 @@ export const DrugsTable = () => {
   
 
 
-    const {  error, data, isSuccess } = useQuery(
+    const {  error } = useQuery(
         ['drugs'],
         () => fetchDrugsData(),
         {
@@ -194,7 +195,7 @@ export const DrugsTable = () => {
     }
 
     const handleStartDateChange = (date: string) => {
-        setStartDate(date);
+        return setStartDate(date);
     };
  
 

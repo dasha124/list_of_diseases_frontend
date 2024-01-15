@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, useState } from "react";
 import { Disease } from "../../../../Types";
 // import { requestTime } from "../../../Consts";
 import "/home/student/front/list_of_diseases_frontend/src/components/ds.css";
@@ -39,13 +39,12 @@ const DiseaseCardAdd: React.FC<DiseaseCardAddProps> = ({}) => {
           'Authorization': access_token,
         },
       });
-      // Очистка полей после успешного добавления нового заболевания
+      
       setDiseaseName("");
       setDiseaseInfo("");
       setDiseaseSimpt("");
       setFile(null);
     } catch (e) {
-      // Обработка ошибки
     }
   };
   

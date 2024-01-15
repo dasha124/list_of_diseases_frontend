@@ -11,3 +11,8 @@ export const errorMessage = () => {
         position: toast.POSITION.BOTTOM_RIGHT
     });
 };
+export const logOutMessage = () => {
+    toast.info(`Вы вышли из аккаунта`, {
+        position: toast.POSITION.BOTTOM_RIGHT
+    });
+}

@@ -17,39 +17,42 @@ const SearchResult = ({ disease }: { disease: Disease }) => {
     const { setDiseases } = useContext(DiseasesContext)
 
 
-    const onDelete = async () => {
-        try {
-            const response = await axios.delete(`${DOMEN}/diseases/${disease.id}/delete/`, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    'Authorization': access_token
-                },
-            });
+    // const onDelete = async () => {
+    //     try {
+    //         const response = await axios.delete(`${DOMEN}/diseases/${disease.id}/delete/`, {
+    //             headers: {
+    //                 "Content-type": "application/json; charset=UTF-8",
+    //                 'Authorization': access_token
+    //             },
+    //         });
     
-            if (response.status === 200) {
-                setDiseases(response.data);
-            } else {
-                throw new Error('Something went wrong');
-            }
-        } catch (error) {
-            console.log("Ошибка удаления!n", error);
-        }
-    };
+    //         if (response.status === 200) {
+    //             setDiseases(response.data);
+    //         } else {
+    //             throw new Error('Something went wrong');
+    //         }
+    //     } catch (error) {
+    //         console.log("Ошибка удаления!n", error);
+    //     }
+    // };
 
-    const onAdd = () => {
-        fetch(`${DOMEN}/diseases/${disease.id}/add_disease_to_drug/`, {
-          method: "POST",
+
+
+      const onAdd = () => {
+        axios.post(`${DOMEN}/diseases/${disease.id}/add_disease_to_drug/`, {
+          diseaseId: disease.id
+        }, {
           headers: {
-            "Content-type": "application/json; charset=UTF-8",
+            "Content-Type": "application/json; charset=UTF-8",
             'Authorization': access_token
-          },
-          body: JSON.stringify({ diseaseId: disease.id })
+          }
         })
         .then((response) => {
-          if (response.ok) {
-            return response.json();
+          if (response.status === 200) {
+            return response.data;
+          } else {
+            throw new Error('Something went wrong');
           }
-          throw new Error('Something went wrong');
         })
         .then((results) => {
           setDiseases(results);

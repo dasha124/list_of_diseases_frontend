@@ -3,7 +3,6 @@
 import { Card } from "react-bootstrap";
 import {Dispatch, useEffect, useState} from "react";
 import {Disease} from "../../../Types";
-import {requestTime} from "../../../Consts";
 // import {useNavigate} from 'react-router-dom';
 import {Link} from "react-router-dom";
 // import {useSession} from "../../../hooks/useSession";
@@ -11,7 +10,6 @@ import {Link} from "react-router-dom";
 import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
 import {useAuth} from "/home/student/front/list_of_diseases_frontend/src/hooks/useAuth.ts"
-import {useSession} from "../../../hooks/useSession";
 
 import axios from 'axios';
 
@@ -20,8 +18,8 @@ import axios from 'axios';
 const DiseaseInfo = ({ disease_id, selectedDisease, setSelectedDisease }:{ disease_id:number | undefined, selectedDisease:Disease| undefined, setSelectedDisease:Dispatch<Disease | undefined> }) => {
 
     const [arr, setArr] = useState<string[]>();
-    const {access_token} = useSession()
-    const {is_superuser, is_authenticated} = useAuth()
+
+    const { is_authenticated} = useAuth()
 
     // const {access_token} = useSession()
     // const [isMock, setIsMock] = useState<boolean>(true);

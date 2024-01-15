@@ -1,6 +1,5 @@
 import SearchResult from "../SearchResult/SearchResults";
-import {useContext} from "react";
-import {DiseasesContext} from "../DiseaseList";
+
 //import "./SearchResultsList.css";
 import {Disease} from "../../../Types";
 import {useAuth} from "/home/student/front/list_of_diseases_frontend/src/hooks/useAuth.ts"
@@ -21,7 +20,7 @@ const SearchResultsList = () => {
     const [diseases, setDiseases] = useState<any[]>([]);
 
     const {access_token} = useSession()
-    const {is_superuser, is_authenticated} = useAuth()
+    const {is_superuser} = useAuth()
 
 
   const fetchData = async () => {

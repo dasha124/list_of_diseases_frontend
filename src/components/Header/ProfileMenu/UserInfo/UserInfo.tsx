@@ -37,7 +37,7 @@ const UserInfo = () => {
     }
 
     return (
-        <div>
+        <div style={{paddingLeft: '25px'}}>
             <div ref={buttonRef}>
                 <img src={user} className="user-avatar" onClick={() => setIsOpen(!isOpen)} />
             </div>

@@ -24,18 +24,3 @@ export default configureStore({
 });
 
 
-// export const store = configureStore({
-//     reducer: {
-//         selectedDisease: diseaseReducer,
-//         diseaseFilters: diseaseFilters,
-//         draftDrug: draftDrugReducer,
-//         selectedDrug: selectedDrugReducer,
-//         drugs: drugsReducer,
-//         user: authReducer,
-//         drugForm: drugFormReducer,
-//         filters: filtersReducer,
-//     }
-// });
-
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppDispatch = typeof store.dispatch;

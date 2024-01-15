@@ -3,9 +3,8 @@
 import { Card } from "react-bootstrap";
 import {Dispatch, useEffect, useState} from "react";
 import {Disease} from "../../../Types";
-import {requestTime} from "../../../Consts";
+// import {requestTime} from "../../../Consts";
 // import {useNavigate} from 'react-router-dom';
-import {Link} from "react-router-dom";
 // import {useSession} from "../../../hooks/useSession";
 // import {DiseaseDetail} from "../../../modules/get-disease-detail";
 import "/home/student/front/list_of_diseases_frontend/src/components/ds.css"
@@ -31,6 +30,7 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
 
 
   const { access_token } = useSession();
+  const { is_superuser} = useAuth()
 
   const fetchData = async () => {
     try {
@@ -72,54 +72,57 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
   };
 
 
-
-  return (
-    <div className="card-container">
-      <Card className="card0">
-        <div>
-          {selectedDisease ? (
-            <div>
-                {<Card.Img  variant="top" src={"data:image/png;base64," + selectedDisease?.image} height={90} width={110} />}
-              <div style={{ marginBottom: '5px' }}>
-                <input
-                  type="text"
-                  value={diseaseName}
-                  onChange={(e) => setDiseaseName(e.target.value)}
-                />
-              </div>
-
+  if (is_superuser){
+    return (
+      <div className="card-container">
+        <Card className="card0">
+          <div>
+            {selectedDisease ? (
               <div>
-                <textarea
-                    style={{ fontFamily: 'Arial' }}
-                    value={Info}
-                    onChange={(e) => setDiseaseInfo(e.target.value)}
-                />
-            </div>
-            <div style={{ marginBottom: '3px' }}>
-                <textarea
-                    style={{ fontFamily: 'Arial' }}
-                    value={Simpt}
-                    onChange={(e) => setDiseaseSimpt(e.target.value)}
-                />
-            </div>
+                  {<Card.Img  variant="top" src={"data:image/png;base64," + selectedDisease?.image} height={90} width={110} />}
+                <div style={{ marginBottom: '5px' }}>
+                  <input
+                    type="text"
+                    value={diseaseName}
+                    onChange={(e) => setDiseaseName(e.target.value)}
+                  />
+                </div>
+  
+                <div>
+                  <textarea
+                      style={{ fontFamily: 'Arial' }}
+                      value={Info}
+                      onChange={(e) => setDiseaseInfo(e.target.value)}
+                  />
+              </div>
+              <div style={{ marginBottom: '3px' }}>
+                  <textarea
+                      style={{ fontFamily: 'Arial' }}
+                      value={Simpt}
+                      onChange={(e) => setDiseaseSimpt(e.target.value)}
+                  />
+              </div>
+  
+  
+              <div>
+                <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
+  
+              </div>
+  
+  
+  
+                <button className="link0" onClick={saveChanges}>Сохранить</button>
+              </div>
+            ) : (
+              <p>Загрузка...</p>
+            )}
+          </div>
+        </Card>
+      </div>
+    );
 
-
-            <div>
-              <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
-
-            </div>
-
-
-
-              <button className="link0" onClick={saveChanges}>Сохранить</button>
-            </div>
-          ) : (
-            <p>Загрузка...</p>
-          )}
-        </div>
-      </Card>
-    </div>
-  );
+  }
+  
 };
 
 export default DiseaseInfoEdit;

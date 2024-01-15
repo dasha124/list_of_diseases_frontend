@@ -12,13 +12,14 @@ import {Response} from "../../Types";
 import Hamburger from "../../components/Header/Hamburger/Hamburger";
 import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
 import {useDraftDrug} from "../../hooks/useDraftDrug";
+// import "/home/student/front/list_of_diseases_frontend/src/components/Header/ProfileMenu/UserInfo/UserInfo.css"
 
 
 const Header: React.FC = () => {
 
     const {access_token } = useSession()
 
-    const {is_authenticated, setUser, is_superuser} = useAuth()
+    const {is_authenticated, setUser, is_superuser, user_name} = useAuth()
 
     const {setDrug} = useDraftDrug()
 
@@ -118,6 +119,7 @@ const Header: React.FC = () => {
 
                     
                 </div>
+                <span className="header-menu-link">Логин: {user_name}</span>
 
                 <ProfileMenu/>
             </div>
