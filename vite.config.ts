@@ -18,8 +18,8 @@ export default defineConfig({
     }
   },
   
-  // base: "diseases",
-  base: "list_of_diseases_frontend",
+  // base: "/diseases",
+  base: "/list_of_diseases_frontend/",
 
   plugins: [react()],
 })
