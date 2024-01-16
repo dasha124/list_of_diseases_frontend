@@ -4,6 +4,7 @@ import {Drug} from "../../../Types";
 import {requestTime, STATUSES} from "../../../Consts";
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import SearchResult from "../../DiseasesList/SearchResult/SearchResults";
 const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | undefined, selectedDrug:Drug| undefined, setSelectedDrug:Dispatch<Drug | undefined> }) => {
 
     const getStatusName = (statusId: string | undefined): string => {
@@ -43,31 +44,22 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                 <div className="drug-info-details">
                     <div className="drug-info-details">
                         <div className="header-name">
-                            <h3> Заявка № {selectedDrug.id}</h3>
+                            <div> Заявка № {selectedDrug.id}: {selectedDrug.drug_name}</div>
                         </div>
                         <div className="header-name">
-                            <h3>Статус заявки: {getStatusName(selectedDrug?.status)}</h3>
+                            <div>Статус заявки: {getStatusName(selectedDrug?.status)}</div>
                         </div>
 
                     </div>
+
+                    <div className="container">
+                    {selectedDrug.disease && selectedDrug.disease.map((disease: Disease, index) => (
+                        <div className="item" key={index}>
+                        <SearchResult disease={disease} />
+                        </div>
+                    ))}
+                    </div>
                     <div className="drug-info-additional">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Название заболевания</th>
-                               
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {selectedDrug.diseases && selectedDrug.diseases.map(disease => (
-                                <tr key={disease.id}>
-                                    <td>{disease.disease_name}</td>
-                                  
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
                         <div className="buttons-info">
                             <div className="home-button">
                                 <Link to={`/drugs/`}>
