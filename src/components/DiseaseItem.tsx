@@ -1,6 +1,7 @@
 // import { FC, useState, useEffect} from 'react'
 import {FC} from 'react'
 import { Button, Card } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Buffer } from 'buffer';
 import '/home/student/front/start_for_gp/list_of_diseases_frontend/src/components/ds.css'
@@ -9,7 +10,8 @@ import '/home/student/front/start_for_gp/list_of_diseases_frontend/src/component
 interface Disease {
     image: string,
     disease_name: string,
-    disease_id: number
+    disease_id: number,
+    pageUrl: string
 }
 
 
@@ -30,8 +32,12 @@ const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
             <div>
                 <Card.Text> { disease_name }</Card.Text>
             </div>
+
+            <div style={{backgroundColor: "red", height: '15px', width: "25px"}}>
+            <Link to={"list_of_diseases_frontend/"+ disease_id}>Подробнее</Link>
+            </div>
             
-            <Button className="btn" href={"http://localhost:3000/list_of_diseases_frontend/"+disease_id}>Подробнее</Button>
+            {/* <Button className="btn" href={"http://localhost:3000/list_of_diseases_frontend/"+disease_id}>Подробнее</Button> */}
             {/* <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button> */}
 
         </Card.Body>
