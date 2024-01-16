@@ -1,61 +1,68 @@
 // @ts-ignore
 import {TableInstance, useTable, usePagination} from "react-table"
-import {useMemo} from "react";
-//import "./Table.css"
+import {useNavigate} from "react-router-dom";
+import "./Table.css"
 import axios from "axios";
-import {STATUSES} from "../../../Consts";
+import {STATUSES, Option, STATUSES_T} from "../../../Consts";
 import { Link } from 'react-router-dom';
 import {useQuery} from "react-query";
 import {useSession} from "../../../hooks/useSession";
+import { format } from 'date-fns';
+import {ru} from 'date-fns/locale';
+import {DOMEN} from "/home/student/front/list_of_diseases_frontend/src/Consts.tsx"
+import { Drug } from "../../../Types";
+import { useDraftDrug } from "../../../hooks/useDraftDrug";
+import {useAuth} from "../../../hooks/useAuth";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
 
+// import {store, RootState, AppDispatch} from '/home/student/front/list_of_diseases_frontend/src/store/store.ts';
 export const DrugsTable = () => {
 
-    const { session_id } = useSession()
 
-    const COLUMNS = [
-        {
-            Header: "№",
-            accessor: "id"
-        },
-        {
-            Header: "Статус",
-            accessor: "status",
-            Cell: ({ value }: { value?: string }) => {
-                const foundStatus = STATUSES.find((status) => status.id === value);
-                return foundStatus ? foundStatus.name : "Неизвестный статус";
-            }
+    const [drugs, setDrugs] = useState<any[]>([]);
+    const [isLoadingUsers, setIsLoadingUsers] = useState(true);
+    const [isLoadingDrugs, setIsLoadingDrugs] = useState(true);
 
-        },
-        {
-            Header: "Счета",
-            accessor: "diseases",
-            Cell: ({ value }: { value?: { name: string }[] }) => {
-                if (value) {
-                    return value.map((disease) => disease.name).join(', ');
-                }
-                return "Нет счетов";
-            }
+  
+    
 
-        },
-        {
-            Header: "Дата формирования",
-            accessor: "time_create",
-        }
-    ]
+    const { access_token } = useSession()
+    const { ApproveDrug, DisApproveDrug} = useDraftDrug()
+    const navigate = useNavigate()
+    
     const fetchDrugsData = async () => {
+        try {
 
-        const {data} = await axios(`http://127.0.0.1:8000/api/drugs/`, {
+        const drugsResponse = await axios.get(`${DOMEN}/drugs/`, {
             method: "GET",
-            headers: {
-                'authorization': `${session_id}`
-            }
-        })
+            headers: { 'Authorization': access_token },
+            params,
+        });
 
-        return data
+        setDrugs(drugsResponse.data);
+        setIsLoadingDrugs(false);
+        } catch (error) {
+        console.log("Ошибка загрузки данных о препаратах!", error);
+        }
+    };
+    
+    useEffect(() => {
+        fetchUsersData();
+        fetchDrugsData();
+    }, []);
 
-    }
+    const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedUserId = parseInt(event.target.value);
+    setFilterUserId(selectedUserId);
+    };
 
-    const { isLoading, error, data, isSuccess } = useQuery(
+
+    const filteredDrugs = filterUserId !== null ? drugs.filter(drug => Number(drug.user_id) === filterUserId) : drugs;
+  
+
+
+    const {  error } = useQuery(
         ['drugs'],
         () => fetchDrugsData(),
         {
@@ -63,85 +70,71 @@ export const DrugsTable = () => {
         }
     );
 
-    const tableColumns = useMemo(() => COLUMNS, [])
-
-    const tableInstance = useTable<TableInstance>({
-        columns:tableColumns,
-        data: isSuccess ? data : [],
-        initialState: {
-            pageIndex: 0,
-            pageSize: 10
-        },
-        manualPagination: true,
-        pageCount: 1,
-    }, usePagination)
-
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        page,
-        prepareRow,
-    } = tableInstance
 
 
     if (error) {
-        return <p>Error</p>;
-    }
-
-    if (isLoading) {
-        return <p>Loading...</p>;
+        return <p>Ошибка загрузки</p>;
     }
 
 
+    const getStatusName = (status: number): string => {
+        const selectedStatus = STATUSES.find((option: Option) => option.id === status);
+        return selectedStatus ? selectedStatus.name : '';
+    }
+
+    const getTestStatusName = (status: number): string => {
+        const selectedStatus = STATUSES_T.find((option: Option) => option.id === status);
+        return selectedStatus ? selectedStatus.name : '';
+    }
+
+    
+
+    const parsedDate= (date: string): string => {
+        if (date) {
+            const parsedDate = format(new Date(date), "d MMMM yyyy 'г.'", { locale: ru });
+            return parsedDate;
+        }
+        return 'Нет даты';
+    }
+   
     return (
-        <div className="table-wrapper">
+        <div className="table-wrapper0">
+            <div className="table-container">
+                <div className="row_">
+                    <div className="column1">№</div>
+                    <div className="column_u">Статус заявки</div>
+                    <div className="column_u">Дата создания</div>
+                    <div className="column_u">Дата формирования</div>
+                    <div className="column_u">Дата завершения</div>
+                    <div className="column_u">Результат клинического испытания</div>
+                    
+                </div>  
+                {filteredDrugs.map((drug: Drug) => (
+                    <div className="row" key={drug.id}>
 
-            <table {...getTableProps()} className="orders-table">
-                <thead>
-                {
-                    headerGroups.map((headerGroup: any) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: any) => (
-                                <th {...column.getHeaderProps()}>
-                                    {column.render('Header')}
-                                </th>
-                            ))}
-                        </tr>
-                    ))
+                       
 
-                }
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                {page.map((row: any) => {
-                    prepareRow(row);
-                    return (
-                        <tr {...row.getRowProps()} key={row.id}>
-                            {row.cells.map((cell: any) => {
-                                const isIdCell = cell.column.id === 'id';
-                                return (
-                                    <td
-                                        {...cell.getCellProps()}
-                                        key={cell.column.id}
-                                        style={{ cursor: isIdCell ? 'pointer' : 'default' }}
-                                    >
-                                        {isIdCell ? (
-                                            <Link to={`/drugs/${row.original.id}/`}>
-                                                {row.original.id}
-                                            </Link>
-                                        ) : (
-                                            cell.render('Cell')
-                                        )}
-                                    </td>
-                                );
-                            })}
-                        </tr>
-                    );
-                })}
+                        <div className="column1"> 
+                        <Link className="link" to={`/drugs/${drug.id}/`}>{drug.id}</Link>
+                         
+                        </div>
 
-                </tbody>
-            </table>
+                        <div className="column_u"> {getStatusName(Number(drug.status))}  </div>
+                  
+                        <div className="column_u">{parsedDate(drug.time_create)}</div>
+
+                        <div className="column_u">{parsedDate(drug.time_form)}</div>
+
+                        <div className="column_u">{parsedDate(drug.time_finish)}</div>
+
+                        <div className="column_u"> {getTestStatusName(Number(drug.test_status))}  </div>
+                        
+                        
+                    </div>
+                ))}
+            </div>
+
+
         </div>
     );
 }
