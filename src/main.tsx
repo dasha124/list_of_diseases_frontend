@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Routes, Route } from 'react-router-dom';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DiseaseCard from './DiseaseCard.tsx'
