@@ -62,16 +62,16 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
                         <table>
                             <thead>
                             <tr>
-                                <th>Тип счета</th>
-                                <th>Название</th>
-                                <th>Номер счета</th>
+                                <th>#</th>
+                                <th>Название заболевания</th>
+                               
                             </tr>
                             </thead>
                             <tbody>
                             {selectedDrug.diseases && selectedDrug.diseases.map(disease => (
                                 <tr key={disease.id}>
-                                    <td>{disease.type}</td>
                                     <td>{disease.disease_name}</td>
+                                  
                                 </tr>
                             ))}
                             </tbody>
