@@ -1,27 +1,77 @@
 import { Link, useLocation } from "react-router-dom";
-import '/home/student/frontend/list_of_diseases_frontend/src/components/ds.css'
+import "./BreadCrumbs.css"
+import {FaChevronRight} from "react-icons/fa";
 
 
 function BreadCrumbs(){
+
+    
+ 
     const location = useLocation()
 
     let currentLink = ''
 
-    const crumbs = location.pathname.split('/')
-    .filter(crumb => crumb !== '')
-    .map(crumb => {
+    type Topics = {
+        [key: string]: string;
+    };
+
+    const topics: Topics = {
+        diseases: "Заболевания",
+        draft: "Заявка",
+        // home: "Главная",
+        profile: "Профиль",
+        login: "Вход",
+        register: "Регистрация"
+    };
+
+    const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
+
         currentLink += `/${crumb}`
 
-        return(
-            <div className="crumb" key={crumb}>
-                <Link to={currentLink}>{crumb}</Link>
-            </div>
-        )
-    })
+        if (Object.keys(topics).find(x => x == crumb))
+        {
+            return (
+                <div className={"crumb"} key={crumb}>
+
+                    <Link to={currentLink} >
+                        {topics[crumb]}
+                    </Link>
+
+
+                    <FaChevronRight className={"chevron-icon"}/>
+
+                </div>
+            )
+        }
+
+        if (currentLink.match(new RegExp('diseases/(\d*)')))
+        {
+            return (
+                <div className={"crumb"} key={crumb}>
+
+                    <Link to={currentLink}>
+                        Заболевание
+                        
+                    </Link>
+
+                    
+
+                </div>
+            )
+        }
+    });
     return(
+        <div className={"breadcrumbs-wrapper"}>
         <div className="breadcrumbs">
+
+            <div className="crumb">
+
+            </div>
+
             {crumbs}
+
         </div>
+    </div>
     )
 }
 

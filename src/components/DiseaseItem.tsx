@@ -3,7 +3,7 @@ import {FC} from 'react'
 import { Button, Card } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Buffer } from 'buffer';
-import '/home/student/frontend/list_of_diseases_frontend/src/components/ds.css'
+import '/home/student/front/start_for_gp/list_of_diseases_frontend/src/components/ds.css'
 
 
 interface Disease {
@@ -25,14 +25,14 @@ const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
         
         {/* <img src={image64} alt={disease_name} className="custom-card-img" /> */}
         
-        {<Card.Img className="cardImage" variant="top" src={"data:image/png;base64," + image} height={100} width={100} />}
+        {<Card.Img className="img-card" variant="top" src={"data:image/png;base64," + image} height={100} width={100} />}
         <Card.Body>
             <div>
                 <Card.Text> { disease_name }</Card.Text>
             </div>
             
             <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Подробнее</Button>
-            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button>
+            {/* <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button> */}
 
         </Card.Body>
         </Card>
