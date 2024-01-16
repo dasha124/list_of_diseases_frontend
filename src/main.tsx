@@ -32,8 +32,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       {/* <Navigation /> */}
       {/* <Breadcrumbs /> */}
       <Routes>
-        <Route path="/list_of_diseases_frontend/diseases/" Component={DiseasesList} />
-        <Route path="/list_of_diseases_frontend/diseases/:id/" Component={DiseaseCard} />
+        <Route path="/list_of_diseases_frontend/" Component={DiseasesList} />
+        <Route path="/list_of_diseases_frontend/:id/" Component={DiseaseCard} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
