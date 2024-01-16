@@ -3,6 +3,7 @@ import {Dispatch, useEffect} from "react";
 import {Drug} from "../../../Types";
 import {requestTime, STATUSES} from "../../../Consts";
 import {Link} from "react-router-dom";
+import axios from 'axios';
 const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | undefined, selectedDrug:Drug| undefined, setSelectedDrug:Dispatch<Drug | undefined> }) => {
 
     const getStatusName = (statusId: string | undefined): string => {
@@ -13,22 +14,13 @@ const DrugInfo = ({ drug_id, selectedDrug, setSelectedDrug }:{ drug_id:number | 
     const fetchData = async () => {
 
         try {
-            const response1 = await fetch(`http://127.0.0.1:8000/drugs/${drug_id}`, {
-                method: "GET",
-                signal: AbortSignal.timeout(requestTime)
-            });
+        const response1 = await axios.get<Drug>(`${DOMEN}/drugs/${drug_id}/`, {
+            timeout: requestTime
+        });
 
-            if (!response1.ok) {
-            }
-
-            const drug: Drug = await response1.json()
-
-            setSelectedDrug(drug)
-
-        } catch (e) {
-
-
-        }
+        setSelectedDrug(response1.data);
+        } catch (error) {
+    }
 
     };
 
