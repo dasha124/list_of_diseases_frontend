@@ -31,7 +31,7 @@ const DiseaseItem: FC<Disease> = ({ disease_name, disease_id, image}) => {
                 <Card.Text> { disease_name }</Card.Text>
             </div>
             
-            <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Подробнее</Button>
+            <Button className="btn" href={"http://localhost:3000/list_of_diseases_frontend/"+disease_id}>Подробнее</Button>
             {/* <Button className="btn" href={"http://localhost:3000/diseases/"+disease_id}>Удалить</Button> */}
 
         </Card.Body>
