@@ -7,24 +7,24 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import DiseaseCard from './DiseaseCard.tsx'
 import DiseasesList from './DiseasesList.tsx'
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
 
-  {
-    path:'/diseases/',
-    element: <DiseasesList/>
-  },
-  {
-    path: '/diseases/:id/',
-    element: <DiseaseCard/>,
-  },
+//   {
+//     path:'/diseases/',
+//     element: <DiseasesList/>
+//   },
+//   {
+//     path: '/diseases/:id/',
+//     element: <DiseaseCard/>,
+//   },
 
-]);
+// ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+// ReactDOM.createRoot(document.getElementById('root')!).render(
+//   <React.StrictMode>
+//     <RouterProvider router={router} />
+//   </React.StrictMode>,
+// )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
