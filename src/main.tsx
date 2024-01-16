@@ -8,11 +8,11 @@ import DiseasesList from './DiseasesList.tsx'
 const router = createBrowserRouter([
 
   {
-    path:'/diseases/',
+    path:'/list_of_diseases_frontend/diseases/',
     element: <DiseasesList/>
   },
   {
-    path: '/diseases/:id/',
+    path: '/list_of_diseases_frontend/diseases/:id/',
     element: <DiseaseCard/>,
   },
 
