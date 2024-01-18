@@ -44,8 +44,9 @@ export const getDisease = async (name = ''): Promise<Disease[]> =>{
 
         .catch((error) => {
             if (name){
+                console.log("name =", name)
                 DiseasesMock.filter(disease => {
-                    return disease.disease_name.toLowerCase().includes(name?.toLowerCase() || "");
+                    return disease.disease_name.toLowerCase().includes(name);
                 });
                 
                 
