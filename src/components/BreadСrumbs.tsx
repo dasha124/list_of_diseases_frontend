@@ -39,7 +39,7 @@ function BreadCrumbs(){
         if (Object.keys(topics).find(x => x == crumb))
         {
             return (
-                <div className={"crumb"} key={crumb}>
+                <div key={crumb}>
 
                     {/* <Link to={currentLink} >
                         {topics[crumb]}
