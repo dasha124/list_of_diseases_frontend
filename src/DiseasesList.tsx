@@ -24,13 +24,15 @@ const DiseasesList: FC = () => {
         await setLoading(false)
     }
     useEffect(() => {
+
         handleSearch();
+        console.log(disease)
       }, []);
 
     return (
         <div>
             <MyNavbar/>
-            <BreadCrumbs />
+            {/* <BreadCrumbs /> */}
             <Container>
             <div className={`container ${loading && 'containerLoading'}`}>
                 {loading && <div className="loadingBg"><Spinner animation="border"/></div>}

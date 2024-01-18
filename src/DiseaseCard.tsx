@@ -1,9 +1,9 @@
 import { FC, useState, useEffect} from 'react'
 import "/home/student/front/start_for_gp/list_of_diseases_frontend/src/components/ds.css"
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { DiseaseDetail, getDiseaseDetail} from "./modules/get-disease-detail";
 import BreadCrumbs from "./components/BreadСrumbs";
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 
@@ -14,6 +14,9 @@ const DiseaseCard: FC = () => {
     const [details, setDetails] = useState<DiseaseDetail>()
     const [arr, setArr] = useState<string[]>();
     const {id} = useParams<{id: string}>()
+
+    const navigate = useNavigate();
+    
 
     const handlerGetDetail = async () => {
     if (id) {
@@ -35,7 +38,7 @@ const DiseaseCard: FC = () => {
     
     return (
         <div>
-            <BreadCrumbs />
+            {/* <BreadCrumbs /> */}
             <div className="card-wrapper">
                 {/* <BreadCrumbs /> */}
                 <Card className="card_serv2">
@@ -46,7 +49,7 @@ const DiseaseCard: FC = () => {
 
                         <p></p>
 
-                        <p className="service-text"> Общая информация:  { details?.gen_info }</p>
+                        <p className="service-text"> Общая информация:  { details?.general_info }</p>
                         <p></p>
                         <p className="service-text" > Характерные симптомы:</p>
                     
@@ -62,9 +65,8 @@ const DiseaseCard: FC = () => {
                     
                     
                 </Card>
-                <Link to="/diseases">
-                <button className="disease-back-button2">Вернуться к списку заболеваний</button>
-            </Link> 
+          
+                <Button className="disease-back-button3" onClick={()=>navigate(`/list_of_diseases_frontend/`)} >Вернуться к списку заболеваний</Button>
            
             
             
