@@ -45,7 +45,7 @@ function BreadCrumbs(){
                         {topics[crumb]}
                     </Link> */}
                     
-                    <span onClick={() => navigate(currentLink)}>
+                    <span onClick={() => navigate('/')}>
                     {topics[crumb]}
                     </span>
 
