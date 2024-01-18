@@ -6,32 +6,13 @@ import { BrowserRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DiseaseCard from './DiseaseCard.tsx'
 import DiseasesList from './DiseasesList.tsx'
-import BreadCrumbs from './components/BreadСrumbs.tsx';
 
-// const router = createBrowserRouter([
-
-//   {
-//     path:'/diseases/',
-//     element: <DiseasesList/>
-//   },
-//   {
-//     path: '/diseases/:id/',
-//     element: <DiseaseCard/>,
-//   },
-
-// ]);
-
-// ReactDOM.createRoot(document.getElementById('root')!).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>,
-// )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       {/* <Navigation /> */}
-      <BreadCrumbs />
+      
       <Routes>
         <Route path="/list_of_diseases_frontend/" Component={DiseasesList} />
         <Route path="/list_of_diseases_frontend/:id/" Component={DiseaseCard} />

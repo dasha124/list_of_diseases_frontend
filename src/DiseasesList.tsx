@@ -33,10 +33,11 @@ const DiseasesList: FC = () => {
     return (
         <div>
             <MyNavbar/>
-            <BreadCrumbs />
+            
             <Container>
             <div className={`container ${loading && 'containerLoading'}`}>
                 {loading && <div className="loadingBg"><Spinner animation="border"/></div>}
+                <BreadCrumbs />
 
                 <InputField
                     value={searchValue}
