@@ -5,7 +5,7 @@ import DiseaseItem from "./components/DiseaseItem";
 import { Disease, getDisease } from "./modules/get-disease";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MyNavbar from "./MyNavbar";
-import BreadCrumbs from './components/BreadСrumbs';
+
 
 
 
