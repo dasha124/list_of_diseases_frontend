@@ -44,7 +44,7 @@ export const getDisease = async (name = ''): Promise<Disease[]> =>{
 
         .catch((error) => {
             if (name){
-                const filteredArray = DiseasesMock.filter(DiseasesMock => DiseasesMock.disease_name.includes(encodeURIComponent(name)));
+                const filteredArray = DiseasesMock.filter(DiseasesMock => DiseasesMock.disease_name.includes(name));
                 return filteredArray
             }
             console.log(error);

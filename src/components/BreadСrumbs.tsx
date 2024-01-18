@@ -58,7 +58,7 @@ function BreadCrumbs(){
         if (currentLink.match(new RegExp('list_of_diseases_frontend/(\d*)')))
         {
             return (
-                <div className={"crumb"} key={crumb}>
+                <div key={crumb}>
 
                     <span onClick={() => navigate(currentLink)}>
                      Заболевание
