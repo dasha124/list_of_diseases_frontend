@@ -1,7 +1,6 @@
 import {  useLocation, useNavigate } from "react-router-dom";
 import "./BreadCrumbs.css"
 import {FaChevronRight} from "react-icons/fa";
-import { useState } from "react";
 // import { Breadcrumb } from "react-bootstrap";
 // import { nameMatching } from "./names";
 
@@ -86,28 +85,5 @@ function BreadCrumbs(){
     )
 }
 
-
-    // const pathComponents = path.split('/').slice(1);
-
-    // const goto = (index: number) => {
-    //     const nestedPath = pathComponents.slice(0, index+1).join('/');
-    //     navigate(`/list_of_diseases_frontend/${nestedPath}`);
-    // }
-
-    // useEffect(() => {
-    //     setPath(location.pathname.split('/').slice(1).join('/'));
-    // }, [location.pathname]);
-
-
-    // return (
-    //     <Breadcrumb>
-    //     {pathComponents?.map((component, index) => (
-    //     <Breadcrumb.Item onClick={() => goto(index)} key={index}>
-    //         {nameMatching(component)}
-    //     </Breadcrumb.Item>
-    //     ))}
-    //     </Breadcrumb>
-    // );
-    // }
 
 export default BreadCrumbs;
