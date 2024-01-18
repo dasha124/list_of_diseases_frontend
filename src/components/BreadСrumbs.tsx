@@ -16,7 +16,6 @@ function BreadCrumbs(){
 
     // let currentLink = 'list_of_diseases_frontend'
 
-    const [path, setPath] = useState(location.pathname);
 
 
     type Topics = {
