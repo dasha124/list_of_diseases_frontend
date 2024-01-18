@@ -5,6 +5,7 @@ import DiseaseItem from "./components/DiseaseItem";
 import { Disease, getDisease } from "./modules/get-disease";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MyNavbar from "./MyNavbar";
+import BreadCrumbs from './components/BreadСrumbs';
 
 
 
@@ -32,7 +33,7 @@ const DiseasesList: FC = () => {
     return (
         <div>
             <MyNavbar/>
-            {/* <BreadCrumbs /> */}
+            <BreadCrumbs />
             <Container>
             <div className={`container ${loading && 'containerLoading'}`}>
                 {loading && <div className="loadingBg"><Spinner animation="border"/></div>}

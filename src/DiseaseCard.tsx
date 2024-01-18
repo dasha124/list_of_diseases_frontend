@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import { DiseaseDetail, getDiseaseDetail} from "./modules/get-disease-detail";
 
 import { Button, Card } from 'react-bootstrap';
+import BreadCrumbs from './components/BreadСrumbs';
 
 
 
@@ -38,7 +39,7 @@ const DiseaseCard: FC = () => {
     
     return (
         <div>
-            {/* <BreadCrumbs /> */}
+            <BreadCrumbs />
             <div className="card-wrapper">
                 {/* <BreadCrumbs /> */}
                 <Card className="card_serv2">
