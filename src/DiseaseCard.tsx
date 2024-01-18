@@ -2,9 +2,9 @@ import { FC, useState, useEffect} from 'react'
 import "/home/student/front/start_for_gp/list_of_diseases_frontend/src/components/ds.css"
 import {useNavigate, useParams} from "react-router-dom";
 import { DiseaseDetail, getDiseaseDetail} from "./modules/get-disease-detail";
-import BreadCrumbs from "./components/BreadСrumbs";
+
 import { Button, Card } from 'react-bootstrap';
-import {Link} from "react-router-dom";
+
 
 
 
