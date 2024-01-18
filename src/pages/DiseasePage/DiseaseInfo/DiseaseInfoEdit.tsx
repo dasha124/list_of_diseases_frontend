@@ -18,7 +18,9 @@ import axios from 'axios';
 
 
 
-interface DiseaseInfoEditProps { disease_id: number | undefined; selectedDisease: Disease | undefined; setSelectedDisease: Dispatch<Disease | undefined>;}
+interface DiseaseInfoEditProps { disease_id?: number | undefined; 
+                                selectedDisease: Disease | undefined;
+                                setSelectedDisease: Dispatch<Disease | undefined>;}
 
 const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedDisease, setSelectedDisease}) => {
 
@@ -27,10 +29,10 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
   const [Simpt, setDiseaseSimpt] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-
-
   const { access_token } = useSession();
   const { is_superuser} = useAuth()
+
+
 
   const fetchData = async () => {
     try {
@@ -47,8 +49,10 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (disease_id) {
+      fetchData();
+    }
+  }, [disease_id]);
 
   const saveChanges = async () => {
     try {
@@ -59,12 +63,25 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
       if (file) {
         formData.append('image', file);
       }
+
+      if (disease_id){
+        await axios.put(`${DOMEN}/diseases/${disease_id}/update/`, formData, {
+          headers: {
+              'Authorization': `${access_token}`
+          },
+        });
+      }
+      else{
+        await axios.post(`${DOMEN}/diseases/post/`, formData, {
+          headers: {
+            'Authorization': access_token,
+          },
+        });
+
+        
+      }
       
-      await axios.put(`${DOMEN}/diseases/${disease_id}/update/`, formData, {
-        headers: {
-            'Authorization': `${access_token}`
-        },
-      });
+      
 
       fetchData();
     } catch (e) {
@@ -77,7 +94,7 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
       <div className="card-container">
         <Card className="card0">
           <div>
-            {selectedDisease ? (
+            {(selectedDisease && disease_id) ? (
               <div>
                   {<Card.Img  variant="top" src={"data:image/png;base64," + selectedDisease?.image} height={90} width={110} />}
                 <div style={{ marginBottom: '5px' }}>
@@ -88,14 +105,14 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
                   />
                 </div>
   
-                <div>
+                <div className="edit_d_info">
                   <textarea
                       style={{ fontFamily: 'Arial' }}
                       value={Info}
                       onChange={(e) => setDiseaseInfo(e.target.value)}
                   />
-              </div>
-              <div style={{ marginBottom: '3px' }}>
+                </div>
+              <div className="edit_d_info" style={{ marginBottom: '3px' }}>
                   <textarea
                       style={{ fontFamily: 'Arial' }}
                       value={Simpt}
@@ -111,10 +128,53 @@ const DiseaseInfoEdit: React.FC<DiseaseInfoEditProps> = ({ disease_id, selectedD
   
   
   
-                <button className="link0" onClick={saveChanges}>Сохранить</button>
+               {/* <button className="link0" onClick={saveChanges}>Сохранить</button> */}
+               <button className="link0" onClick={saveChanges}>
+                  {disease_id ? "Сохранить" : "Добавить"}
+                </button>
               </div>
             ) : (
-              <p>Загрузка...</p>
+              <div>
+              <div style={{ marginBottom: '10px' }}>
+                <input
+                  type="text"
+                  placeholder="Название заболевания"
+                  value={diseaseName}
+                  onChange={(e) => setDiseaseName(e.target.value)}
+                />
+              </div>
+      
+              <div  className="edit_d_info" style={{ marginBottom: '10px' }}>
+                <textarea
+                  style={{ fontFamily: 'Arial' }}
+                  placeholder="Общая информация"
+                  value={Info}
+                  onChange={(e) => setDiseaseInfo(e.target.value)}
+                />
+              </div>
+      
+              <div className="edit_d_info" style={{ marginBottom: '10px' }}>
+                <textarea
+                  style={{ fontFamily: 'Arial' }}
+                  placeholder="Симптомы"
+                  value={Simpt}
+                  onChange={(e) => setDiseaseSimpt(e.target.value)}
+                />
+              </div>
+      
+              <div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+              </div>
+      
+              <button className="link0" onClick={saveChanges}>
+                Добавить
+              </button>
+            </div>
+              
             )}
           </div>
         </Card>

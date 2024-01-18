@@ -11,7 +11,7 @@ const DiseasePageEdit = ({ selectedDisease, setSelectedDisease }: { selectedDise
 
     if (id == undefined) {
         return (
-            <div>404</div>
+            <DiseaseInfoEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease} />
         )
     }
 

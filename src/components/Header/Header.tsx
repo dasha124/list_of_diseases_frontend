@@ -21,10 +21,13 @@ const Header: React.FC = () => {
 
     const {is_authenticated, setUser, is_superuser, user_name} = useAuth()
 
-    const {setDrug} = useDraftDrug()
+    const {drug, setDrug} = useDraftDrug()
+    const [drugs, setDrugs] = useState<any[]>([]);
+
+    const id = drug?.id;
 
     const fetchDrug = async () => {
-        const response = await axios(`${DOMEN}/drugs/create_drug/`, {
+        const response = await axios(`${DOMEN}/drugs/${id}/`, {
             method: "GET",
             headers: {
                 "Content-type": "drug/json; charset=UTF-8",
@@ -37,6 +40,26 @@ const Header: React.FC = () => {
             setDrug(response.data)
         }
     }
+
+
+    const fetchDrugs = async () => {
+        const response = await axios(`${DOMEN}/drugs/`, {
+            method: "GET",
+            headers: {
+                "Content-type": "drug/json; charset=UTF-8",
+                'authorization': access_token
+            },
+        })
+
+        if (response.status != 404)
+
+        {
+            console.log(response.data)
+            setDrugs(response.data)
+        }
+    }
+
+   
 
     const auth = async () => {
 
@@ -62,7 +85,7 @@ const Header: React.FC = () => {
                 }
 
                 setUser(permissions)
-                await fetchDrug()
+                await fetchDrugs()
             }
 
         } catch (error: any) {
@@ -104,7 +127,7 @@ const Header: React.FC = () => {
                     <span className="item">Препараты</span>
                 </Link>
 
-                <Link to="/drugs/create_drug/" className="header-menu-link" style={{textDecoration: 'none'}}>
+                <Link to={`/drugs/${id}/`} className="header-menu-link" style={{textDecoration: 'none'}}>
                     <span className="item">Выбранные заболевания</span>
                 </Link>
 
@@ -128,7 +151,7 @@ const Header: React.FC = () => {
     return (
         <div className="header-wrapper">
             <div className="header-left">
-                {/*<img src={logo} className="logo" alt="Bank Logo"/>*/}
+                
                 <div>
                     <h2 className="header-title">Регистрация новых препаратов</h2>
                 </div>

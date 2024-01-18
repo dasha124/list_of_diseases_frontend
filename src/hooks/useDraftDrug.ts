@@ -20,7 +20,7 @@ export function useDraftDrug() {
 
     const fetchDraftDrug = async () => {
 
-        const response = await axios(`${DOMEN}/drugs/create_drug/`, {
+        const response = await axios(`${DOMEN}/drugs/${drug.id}/`, {
             method: "GET",
             headers: {
                 "Content-type": "drug/json; charset=UTF-8",

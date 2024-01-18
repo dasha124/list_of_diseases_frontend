@@ -19,9 +19,8 @@ import {QueryClient, QueryClientProvider } from "react-query";
 import {Disease, Drug} from "./Types";
 import {useState} from "react";
 import DrugPage from "./pages/DrugPage/DrugPage";
-import NotFoundPage from "./pages/NotFoundPage"
 import React from "react";
-import DiseaseCardAdd from "./pages/DiseasePage/DiseaseInfo/DiseaseCardAdd/DiseaseCardAdd"
+
 import Menu from "/home/student/front/list_of_diseases_frontend/src/pages/MenuPage/Menu.tsx"
 
 
@@ -83,14 +82,14 @@ function App() {
                     <Route path="/diseases/" element={<DiseaseListPage />} />
                     <Route path="/diseases/:id" element={<DiseasePage selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease} />} />
                     <Route path="/diseases/:id/update" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
-                    <Route path="/diseases/add/" element={<DiseaseCardAdd selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
+                    <Route path="/diseases/add/" element={<DiseasePageEdit selectedDisease={selectedDisease} setSelectedDisease={setSelectedDisease}/>} />
                     
 
                     <Route path="/drugs/" element={<DrugsPage />} />
 
                     <Route path="/drugs/:id/" element={<DrugPage selectedDrug={selectedDrug} setSelectedDrug={setSelectedDrug}/>} />
 
-                    <Route path="/drugs/create_drug/" element={<DraftDrugPage />} />
+                    <Route path="/drugs/:id" element={<DraftDrugPage />} />
 
 
                     

@@ -25,7 +25,9 @@ function BreadCrumbs(){
         // home: "Главная",
         profile: "Профиль",
         login: "Вход",
-        register: "Регистрация"
+        register: "Регистрация",
+        update: "Редактирование",
+        add: "Добавление"
     };
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {

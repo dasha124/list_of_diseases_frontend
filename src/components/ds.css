@@ -357,7 +357,17 @@
     
 
   }
+  ul {
+    line-height: 1;
+  }
 
+
+  .edit_d_info textarea {
+    width: 300px;
+    height: 100px;
+  }
+  
+  
 
   .card-wrapper {
     display: flex;
