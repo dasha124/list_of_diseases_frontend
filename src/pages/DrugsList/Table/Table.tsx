@@ -82,10 +82,7 @@ export const DrugsTable = () => {
         return selectedStatus ? selectedStatus.name : '';
     }
 
-    const getTestStatusName = (status: number): string => {
-        const selectedStatus = STATUSES_T.find((option: Option) => option.id === status);
-        return selectedStatus ? selectedStatus.name : '';
-    }
+
 
     
 
@@ -106,7 +103,7 @@ export const DrugsTable = () => {
                     <div className="column_u">Дата создания</div>
                     <div className="column_u">Дата формирования</div>
                     <div className="column_u">Дата завершения</div>
-                    <div className="column_u">Результат клинического испытания</div>
+                   
                     
                 </div>  
                 {filteredDrugs.map((drug: Drug) => (
@@ -127,7 +124,6 @@ export const DrugsTable = () => {
 
                         <div className="column_u">{parsedDate(drug.time_finish)}</div>
 
-                        <div className="column_u"> {getTestStatusName(Number(drug.test_status))}  </div>
                         
                         
                     </div>
