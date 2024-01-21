@@ -45,13 +45,12 @@ const DiseaseCard: FC = () => {
                 <Card className="card_serv2">
                     {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />}
                     <div>
-
+                    {/* {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />} */}
                         <p className="service-text"> Название заболевания:  { details?.disease_name }</p>
 
                         <p></p>
 
-                        <p className="service-text"> Общая информация:  { details?.general_info }</p>
-                        <p></p>
+                      
                         <p className="service-text" > Характерные симптомы:</p>
                     
                         <ul>
@@ -61,13 +60,16 @@ const DiseaseCard: FC = () => {
                                 </li>
                             ))}
                         </ul>
+                        <Button className="disease-back-button3" onClick={()=>navigate(`/list_of_diseases_frontend/`)} >Вернуться к списку заболеваний</Button>
 
                     </div>
+
+                    {/* <Button className="disease-back-button3" onClick={()=>navigate(`/list_of_diseases_frontend/`)} >Вернуться к списку заболеваний</Button> */}
                     
                     
                 </Card>
           
-                <Button className="disease-back-button3" onClick={()=>navigate(`/list_of_diseases_frontend/`)} >Вернуться к списку заболеваний</Button>
+                
            
             
             

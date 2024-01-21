@@ -14,10 +14,7 @@ function MyNavbar() {
             Регистрация новых препаратов
             </Navbar.Brand>
 
-            <Navbar.Brand as={Link} to="/diseases/" className="header-title">
-            Заболевания
-            </Navbar.Brand>
-
+           
             
           
             <Nav className="header-menu-link">
