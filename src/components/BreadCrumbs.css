@@ -4,11 +4,12 @@
     padding: 10px;
     border-radius: 8px;
   }
-  @media (max-height: 443px) {
+  @media (max-height: 490px) {
     .breadcrumbs-wrapper {
       display: none;
     }
   }
+
   
   .breadcrumbs {
     display: flex;

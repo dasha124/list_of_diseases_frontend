@@ -629,6 +629,7 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
+    margin: auto;
 
 }
   
@@ -637,7 +638,7 @@ ul {
     max-width: 200px;
     height: auto;
     object-fit: cover;
-    margin:auto;
+    
   
 
     @media screen and (max-width: 600px) {
