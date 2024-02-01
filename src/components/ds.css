@@ -637,6 +637,7 @@ ul {
     max-width: 200px;
     height: auto;
     object-fit: cover;
+    margin:auto;
   
 
     @media screen and (max-width: 600px) {
@@ -652,8 +653,13 @@ ul {
 
     }
     
+    
   }
-
+  @media (max-height: 360px) {
+     .img-card2  {
+      display: none;
+    }
+  }
 
 
  

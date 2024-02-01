@@ -32,8 +32,9 @@ function BreadCrumbs(){
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
 
-        let currentLink='list_of_diseases_frontend/'
-
+        // let currentLink='list_of_diseases_frontend/'
+        let currentLink = ''
+     
         currentLink += `/${crumb}`
 
         if (Object.keys(topics).find(x => x == crumb))
@@ -45,7 +46,7 @@ function BreadCrumbs(){
                         {topics[crumb]}
                     </Link> */}
                     
-                    <span onClick={() => navigate('/')}>
+                    <span onClick={() => navigate(currentLink)}>
                     {topics[crumb]}
                     </span>
 
@@ -55,7 +56,7 @@ function BreadCrumbs(){
             )
         }
 
-        if (currentLink.match(new RegExp('list_of_diseases_frontend/(\d*)')))
+        if (currentLink.match(new RegExp('(\d*)')))
         {
             return (
                 <div key={crumb}>
