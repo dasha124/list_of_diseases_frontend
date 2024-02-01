@@ -50,7 +50,7 @@ const DiseasesList: FC = () => {
                     <h1>К сожалению, пока ничего не найдено :(</h1>
                 </div>}
 
-                <Row xs={2} md={3} className="g-4">
+                <Row xs={1} md={3} className="g-4">
                     {disease.map((item, index)=> (
                         <Col key={index}>
                             <DiseaseItem {...item} />

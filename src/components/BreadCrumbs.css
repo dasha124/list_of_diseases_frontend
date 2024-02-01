@@ -1,7 +1,13 @@
+
 .breadcrumbs-wrapper {
     background-color: #ffffff;
     padding: 10px;
     border-radius: 8px;
+  }
+  @media (max-height: 445px) {
+    .breadcrumbs-wrapper {
+      display: none;
+    }
   }
   
   .breadcrumbs {

@@ -41,25 +41,27 @@ const DiseaseCard: FC = () => {
         <div>
             <BreadCrumbs />
             <div className="card-wrapper">
-                {/* <BreadCrumbs /> */}
+               
                 <Card className="card_serv2">
-                    {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />}
+                   
                     <div>
-                    {/* {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />} */}
-                        <p className="service-text"> Название заболевания:  { details?.disease_name }</p>
+                    {<Card.Img className="img-card2" variant="top" src={"data:image/png;base64," + details?.image} />}
+                    <p></p>
+                        <p className="service-text1"> Название заболевания:  { details?.disease_name }</p>
 
                         <p></p>
 
                       
-                        <p className="service-text" > Характерные симптомы:</p>
+                        <p className="service-text1" > Характерные симптомы: { details?.simptoms}</p>
                     
-                        <ul>
+                        {/* <ul>
                             {arr?.map((simptom, index) => (
                                 <li className="service-text" key={index}>
                                     <li>{simptom}</li>
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
+                        <p></p>
                         <Button className="disease-back-button3" onClick={()=>navigate(`/list_of_diseases_frontend/`)} >Вернуться к списку заболеваний</Button>
 
                     </div>
