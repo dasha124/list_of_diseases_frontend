@@ -34,7 +34,7 @@ function BreadCrumbs(){
 
         
         let currentLink = 'list_of_diseases_frontend'
-        let cur = 'list_of_diseases_frontend'
+
 
         if (Object.keys(topics).find(x => x == crumb))
         {
