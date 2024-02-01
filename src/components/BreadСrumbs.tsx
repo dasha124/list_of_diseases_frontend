@@ -32,21 +32,16 @@ function BreadCrumbs(){
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
 
-        // let currentLink='list_of_diseases_frontend/'
-        let currentLink = ''
-     
-        currentLink += `/${crumb}`
+        
+        let currentLink = 'list_of_diseases_frontend'
+        let cur = 'list_of_diseases_frontend'
 
         if (Object.keys(topics).find(x => x == crumb))
         {
             return (
                 <div key={crumb}>
-
-                    {/* <Link to={currentLink} >
-                        {topics[crumb]}
-                    </Link> */}
                     
-                    <span onClick={() => navigate(currentLink)}>
+                    <span onClick={() => navigate(`/${crumb}`)}>
                     {topics[crumb]}
                     </span>
 
@@ -61,7 +56,7 @@ function BreadCrumbs(){
             return (
                 <div key={crumb}>
 
-                    <span onClick={() => navigate(currentLink)}>
+                    <span onClick={(e) => e.preventDefault()}>
                      Заболевание
                     </span>
 
